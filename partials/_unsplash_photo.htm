@@ -14,6 +14,6 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 	<!--img data-regular="<?= $photo['urls']['regular'] ?>" src="<?= $photo['urls']['thumb'] ?>" class="img img-thumbnail" alt="<?= $photo['alt_description']?>"/-->
 	<div class="btn-group">
 		<a data-control="popup" data-size="giant" data-z-index="2000" data-request-data="{path: '<?= $photo['urls']['regular'] ?>'}" data-handler="onShowPhoto" href="javascript:;" title="<?= trans('snipi.uniquemediafinder::lang.buttons.look') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-eye"></i></a>
-		<a href="#" data-request-data="{qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('unsplash_upload_folder','unsplash') ?>',fileId:'<?= $photo['id']?>' ,path: '<?= $photo['links']['download'] ?>'}" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i></a>
+		<a href="#" data-folder="<?= Settings::get('unsplash_upload_folder','unsplash') ?>" data-request-data="{qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('unsplash_upload_folder','unsplash') ?>',fileId:'<?= $photo['id']?>' ,path: '<?= $photo['links']['download_location'] ?>'}" data-request-loading="#loader" data-request-error="handlePicError(this)" data-request-success="pictureDownloaded(this)" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i></a>
 	</div>
 </li>

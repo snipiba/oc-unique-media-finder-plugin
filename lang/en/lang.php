@@ -49,5 +49,9 @@
 		'buttons' => [
 			'look' => 'View photo',
 			'download' => 'Download to library'
+		],
+		'flash' => [
+			'pic_downloaded' => 'Picture was successfully downloaded to folder ',
+			'pic_error' => 'Unable to download picture.'
 		]
 	];
