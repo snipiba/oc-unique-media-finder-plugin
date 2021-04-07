@@ -1,10 +1,10 @@
 <?php 
-namespace Snipi\UniqueMediaFinder;
+namespace SNiPI\UniqueMediaFinder;
 
 use Backend;
 use Config;
 use System\Classes\PluginBase;
-use Snipi\UniqueMediaFinder\Models\Settings;
+use SNiPI\UniqueMediaFinder\Models\Settings;
 
 class Plugin extends PluginBase
 {
@@ -13,7 +13,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'snipi.uniquemediafinder::lang.plugin.plugin_name',
             'description' => 'snipi.uniquemediafinder::lang.plugin.plugin_desc',
-            'author'      => 'František "SNiPI" Čaník',
+            'author'      => 'SNiPI',
             'icon'        => 'icon-camera',
             'homepage'    => 'https://github.com/snipiba/oc-unique-media-finder-plugin'
         ];
@@ -27,7 +27,7 @@ class Plugin extends PluginBase
                 'label'       => 'snipi.uniquemediafinder::lang.plugin.plugin_name',
                 'icon'        => 'icon-bar-chart-o',
                 'description' => 'snipi.uniquemediafinder::lang.plugin.plugin_desc_settings',
-                'class'       => 'Snipi\UniqueMediaFinder\Models\Settings',
+                'class'       => 'SNiPI\UniqueMediaFinder\Models\Settings',
                 'order'       => 400
             ]
         ];
