@@ -53,5 +53,31 @@
 		'flash' => [
 			'pic_downloaded' => 'Picture was successfully downloaded to folder ',
 			'pic_error' => 'Unable to download picture.'
+		],
+		'photo' => [
+			'downloads' => 'Downloads',
+			'download_photo' => 'Download this photo',
+			'views' => 'Views',
+			'updated' => 'Updated',
+			'exif_information' => 'Exif information',
+			'dimensions' => 'Dimensions',
+			'size' => 'Filesize',
+			'description' => 'Description',
+			'support_author' => 'Support photographer',
+			'no_description_provided' => 'Photographer not provided any description.',
+			'support_author_title' => 'Support this author if you can',
+			'support_author_text' => 'All photos provided on Unsplash are royalty free and can be used without any purchase and without any notation of author. Me - as author of this plugin and as a photographer - can tell, that any small line of text, where is noted author, is helpfull. Really, be kind and use html code below, to show small information about photographer, to support his/her work.',
+			'provided_by' => 'This photography is provided by',
+			'royalty_free' => ' ~ royalty free photo stock bank.',
+			'provider_unsplash' => 'Unsplash.com',
+			'provider_pexels' => 'Pexels.com'
+		],
+		'exif' => [
+			'make' => 'Camera manufacturer',
+			'model' => 'Camera model',
+			'exposure_time' => 'Exposure time',
+			'aperture' => 'Aperture',
+			'focal_length' => 'Focal length',
+			'iso' => 'ISO'
 		]
 	];

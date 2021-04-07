@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
     /**Add editor button to the preview screen**/
     $('div.control-toolbar .btn-group:eq(0)').after('<button class="btn btn-success" data-toggle="modal" data-size="giant" href="#onUniqueSearch"><i class="icon-search"></i></button>')
     $('#loader').hide();
-    $('.nav.nav-tabs li:eq(0)').trigger('click');
+
 
 });
 
@@ -20,11 +20,11 @@ function pictureDownloaded(data) {
         'text' : _lang_pic_downloaded + folder,
         'class' : 'success',
     });
+    $('button[data-command="refresh"]').trigger('click');
 }
 
 function handlePicError(error) {
     
-    console.log(elementData);
     $.oc.flashMsg({
         'text' : _lang_pic_error,
         'class' : 'danger',
@@ -32,5 +32,5 @@ function handlePicError(error) {
 }
 
 function searchComplete() {
-    $('.nav.nav-tabs li:eq(0)').trigger('click');
+    $('.nav-tabs li:eq(0)').trigger('click');
 }
