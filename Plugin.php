@@ -3,7 +3,11 @@ namespace SNiPI\UniqueMediaFinder;
 
 use Backend;
 use Config;
+use Input;
+use Storage;
+use Http;
 use System\Classes\PluginBase;
+use Backend\Widgets\MediaManager;
 use SNiPI\UniqueMediaFinder\Models\Settings;
 
 class Plugin extends PluginBase
@@ -14,7 +18,7 @@ class Plugin extends PluginBase
             'name'        => 'snipi.uniquemediafinder::lang.plugin.plugin_name',
             'description' => 'snipi.uniquemediafinder::lang.plugin.plugin_desc',
             'author'      => 'SNiPI',
-            'icon'        => 'icon-camera',
+            'icon'        => 'icon-picture-o',
             'homepage'    => 'https://github.com/snipiba/oc-unique-media-finder-plugin'
         ];
     }
@@ -25,7 +29,8 @@ class Plugin extends PluginBase
         return [
             'config' => [
                 'label'       => 'snipi.uniquemediafinder::lang.plugin.plugin_name',
-                'icon'        => 'icon-bar-chart-o',
+                'icon'        => 'icon-picture-o',
+                'category'    => 'snipi.uniquemediafinder::lang.plugin.plugin_name',
                 'description' => 'snipi.uniquemediafinder::lang.plugin.plugin_desc_settings',
                 'class'       => 'SNiPI\UniqueMediaFinder\Models\Settings',
                 'order'       => 400
@@ -36,8 +41,7 @@ class Plugin extends PluginBase
     public function boot()
     {
 
-
-        \Backend\Widgets\MediaManager::extend(function ($widget) {
+        MediaManager::extend(function ($widget) {
             $widget->addViewPath(plugins_path().'/snipi/uniquemediafinder/backend/widgets/mediamanager/partials/');
             $widget->addViewPath(plugins_path().'/snipi/uniquemediafinder/partials/');
             $widget->addJs('/plugins/snipi/uniquemediafinder/assets/js/uniquefinder.js');
@@ -45,17 +49,17 @@ class Plugin extends PluginBase
 
             $widget->addDynamicMethod('onDownloadPhoto', function() use ($widget){
 
-                $widget->vars['path'] = \Input::get('path');
-                $widget->vars['file_id'] = \Input::get('fileId');
+                $widget->vars['path'] = Input::get('path');
+                $widget->vars['file_id'] = Input::get('fileId');
                 $file = new \System\Models\File;
-                $file->fromUrl(\Input::get('path'), \Input::get('qs') . '_' . \Input::get('fileId').'.jpg');
+                $file->fromUrl(Input::get('path'), Input::get('qs') . '_' . Input::get('fileId').'.jpg');
                 $savedFile = $file->save();
                 $filename = $file->getLocalPath();
                 try {
-                    if(!\Storage::exists('media/' . \Input::get('folder'))) {
-                        \Storage::makeDirectory('media/' . \Input::get('folder'));
+                    if(!Storage::exists('media/' . Input::get('folder'))) {
+                        Storage::makeDirectory('media/' . Input::get('folder'));
                     }
-                    \Storage::copy(str_replace('/app','',str_replace('\app','',str_replace(storage_path(),'',$file->getLocalPath()))) , 'media/' . \Input::get('folder') . '/' . basename($filename));
+                    Storage::copy(str_replace('/app','',str_replace('\app','',str_replace(storage_path(),'',$file->getLocalPath()))) , 'media/' . Input::get('folder') . '/' . basename($filename));
                     sleep(2);
                     $file->delete();
                 } catch(Exception $e) {
@@ -64,16 +68,37 @@ class Plugin extends PluginBase
             });
 
             $widget->addDynamicMethod('onShowPhoto', function() use ($widget){
+                $type = Input::get('type');
+                $id = Input::get('id');
+                Switch($type) {
 
-                $widget->vars['path'] = \Input::get('path');
+                    case 'unsplash':
+                        \Unsplash\HttpClient::init([
+                            'applicationId' => Settings::get('unsplash_api_key'),
+                            'utmSource' => Settings::get('unsplash_application_name'),
+                        ]);
+                        $photo = \Unsplash\Photo::find($id)->toArray();
+                    break;
+
+                    case 'pexels':
+                    $client = Http::get('https://api.pexels.com/v1/photos/' . $id, function($http){
+                        $http->header('Authorization', Settings::get('pexels_api_key'));    
+                    });
+                    $photo = json_decode($client->body,true);
+                    break;
+                }
+                $widget->vars['photo'] = $photo;
+                $widget->vars['type'] = $type;
+                $widget->vars['search'] = Input::get('search');
+                $widget->vars['path'] = Input::get('path');
                 return $widget->makePartial('photo');
             });
 
             $widget->addDynamicMethod('onPaginate', function() use ($widget){
 
-                $widget->vars['search'] = $query = \Input::get('query');
-                $widget->vars['page'] = \Input::get('page');
-                $widget->vars['provider'] = \Input::get('provider');
+                $widget->vars['search'] = $query = Input::get('query');
+                $widget->vars['page'] = Input::get('page');
+                $widget->vars['provider'] = Input::get('provider');
 
                 if(empty($query)) {
                    throw new \Exception(trans('snipi.uniquemediafinder::lang.errors.no_search_query')); 
@@ -108,7 +133,7 @@ class Plugin extends PluginBase
                 if(false === empty(Settings::get('pexels_api_key'))) {
                     $response['pexels'] = true;
 
-                    $client = \Http::get('https://api.pexels.com/v1/search?query=' . urlencode($query) . '&page='.\Input::get('page').'&per_page=' . (Settings::get('pexels_per_page')??20), function($http){
+                    $client = Http::get('https://api.pexels.com/v1/search?query=' . urlencode($query) . '&page='.Input::get('page').'&per_page=' . (Settings::get('pexels_per_page')??20), function($http){
                         $http->header('Authorization', Settings::get('pexels_api_key'));    
                     });
                     $body = json_decode($client->body);
@@ -124,7 +149,7 @@ class Plugin extends PluginBase
                 $widget->vars['pexels'] = $response['pexels'];
                 $widget->vars['search'] = $query;
                 return [
-                    '#' . \Input::get('provider').'-list' => $widget->makePartial(\Input::get('provider').'-list', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels']])
+                    '#' . Input::get('provider').'-list' => $widget->makePartial(Input::get('provider').'-list', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels']])
                 ];
             });
 
@@ -166,7 +191,7 @@ class Plugin extends PluginBase
                 if(false === empty(Settings::get('pexels_api_key'))) {
                     $response['pexels'] = true;
 
-                    $client = \Http::get('https://api.pexels.com/v1/search?query=' . urlencode($query) . '&per_page=' . (Settings::get('pexels_per_page')??20), function($http){
+                    $client = Http::get('https://api.pexels.com/v1/search?query=' . urlencode($query) . '&per_page=' . (Settings::get('pexels_per_page')??20), function($http){
                         $http->header('Authorization', Settings::get('pexels_api_key'));    
                     });
                     $body = json_decode($client->body);
