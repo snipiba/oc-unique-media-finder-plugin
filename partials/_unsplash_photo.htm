@@ -1,0 +1,19 @@
+<?php
+use Snipi\UniqueMediaFinder\Models\Settings;
+?>
+<li data-type="media-item"
+    tabindex="0"
+    data-path="<?= $photo['urls']['regular'] ?>"
+    data-likes="<?= $photo['likes'] ?>" 
+    data-user="<?= $photo['user']['name'] ?>" 
+    data-id="<?= $photo['id'] ?>" 
+    data-download="<?= $photo['links']['download_location'] ?>"
+    class="media-item"
+    style="background-color:<?= $photo['color'] ?>;background-image: url(<?= $photo['urls']['regular'] ?>);background-repeat:no-repeat;background-size:contain;background-position: center;"
+>
+	<!--img data-regular="<?= $photo['urls']['regular'] ?>" src="<?= $photo['urls']['thumb'] ?>" class="img img-thumbnail" alt="<?= $photo['alt_description']?>"/-->
+	<div class="btn-group">
+		<a data-control="popup" data-size="giant" data-z-index="2000" data-request-data="{path: '<?= $photo['urls']['regular'] ?>'}" data-handler="onShowPhoto" href="javascript:;" title="<?= trans('snipi.uniquemediafinder::lang.buttons.look') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-eye"></i></a>
+		<a href="#" data-request-data="{qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('unsplash_upload_folder','unsplash') ?>',fileId:'<?= $photo['id']?>' ,path: '<?= $photo['links']['download'] ?>'}" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i></a>
+	</div>
+</li>

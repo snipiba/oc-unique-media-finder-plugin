@@ -1,0 +1,66 @@
+fields:
+    introduction:
+        type: partial
+        path: $/snipi/uniquemediafinder/partials/_introduction.htm
+
+tabs:
+  fields:
+    unsplash_introduction:
+        type: partial
+        path: $/snipi/uniquemediafinder/partials/_unsplash_introduction.htm
+        tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+    unsplash_api_key:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.unsplash_api_key
+      commentAbove: snipi.uniquemediafinder::lang.settings.unsplash_api_key_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+    unsplash_upload_folder:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.unsplash_upload_folder
+      commentAbove: snipi.uniquemediafinder::lang.settings.unsplash_upload_folder_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+    unsplash_application_name:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.unsplash_application_name
+      commentAbove: snipi.uniquemediafinder::lang.settings.unsplash_application_name_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+    unsplash_per_page:
+      span: auto
+      type: number
+      default: 20
+      label: snipi.uniquemediafinder::lang.settings.unsplash_per_page
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+
+    pexels_introduction:
+        type: partial
+        path: $/snipi/uniquemediafinder/partials/_pexels_introduction.htm
+        tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+    pexels_api_key:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.pexels_api_key
+      commentAbove: snipi.uniquemediafinder::lang.settings.pexels_api_key_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+
+    pexels_upload_folder:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.pexels_upload_folder
+      commentAbove: snipi.uniquemediafinder::lang.settings.pexels_upload_folder_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+
+    pexels_per_page:
+      span: auto
+      type: number
+      default: 20
+      label: snipi.uniquemediafinder::lang.settings.pexels_per_page
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+

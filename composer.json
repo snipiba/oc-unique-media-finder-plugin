@@ -1,0 +1,17 @@
+{
+    "name": "snipi/oc-unique-media-finder-plugin",
+    "type": "october-plugin",
+    "description": "Media finder extension for searching images on Unsplash",
+    "homepage": "https://www.snipi.sk",
+    "keywords": ["october", "cms", "unsplash","media finder","unsplash photobank"],
+    "authors": [
+        {
+            "name": "SNiPI",
+            "email": "snipi@snipi.sk"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "unsplash/unsplash": "^3.1"
+    }
+}

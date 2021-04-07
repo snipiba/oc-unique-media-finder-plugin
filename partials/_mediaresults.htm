@@ -1,0 +1,34 @@
+<div class="control-tabs primary-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+    	<?php
+    	if($this->vars['unsplash']['results']):
+    	?>
+        <li class="active"><a href="#primaryTabOne">Unsplash</a></li>
+        <?php
+        endif;
+    	if($this->vars['pexels']['results']):
+    	?>
+        <li><a href="#primaryTabTwo">Pexels</a></li>
+        <?php
+        endif;
+        ?>
+    </ul>
+    <div class="tab-content">
+    	<?php
+    	if($this->vars['unsplash']['results']):
+    	?>
+        <div class="tab-pane active">
+            <?= $this->makePartial('unsplash-list') ?>
+        </div>
+        <?php
+        endif;
+    	if($this->vars['pexels']['results']):
+    	?>
+        <div class="tab-pane">
+            <?= $this->makePartial('pexels-list') ?>
+        </div>
+        <?php
+        endif;
+        ?>
+    </div>
+</div>
