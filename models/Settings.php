@@ -1,5 +1,5 @@
 <?php 
-namespace Snipi\UniqueMediaFinder\Models;
+namespace SNiPI\UniqueMediaFinder\Models;
 
 use October\Rain\Database\Model;
 

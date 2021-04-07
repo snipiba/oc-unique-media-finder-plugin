@@ -10,7 +10,7 @@
 			'title' => 'Unique media finder configuration',
 			'about' => 'This plugin allows users to search media files on various databases like Unsplash or Pexels.<br/>For search is used open API, then you need to setup some API keys to use API endpoints to search and download photos to your media library database stored in your local server.',
 			'title_support' => 'Support my work',
-			'support' => 'If you wish, you can provide some donation for my work on this plugin or on other plugins for OctoberCMS. For more info see my website <a href="https://www.snipi.sk?ref=uniquemediafinder" target="_blank">Snipi.sk</a>.',
+			'support' => 'If you wish, you can provide some donation for my work on this plugin or on other plugins for OctoberCMS. For more info see my website <a href="https://www.snipi.sk?ref=uniquemediafinder" target="_blank">SNiPI.sk</a>.',
 			'unsplash_title' => 'Configure API settings for UNSPLASH',
 			'unsplash_about' => '<a href="https://unsplash.com/about" target="_blank">UNSPLASH</a> is an open source royalty free stock database where is over 2 milions photographies and high-resolution images, which is free to use.',
 			'unsplash_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://unsplash.com/oauth/applications/new" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.',
