@@ -30,6 +30,6 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 	</div>
 </div>
 <div class="control-pagination">
-    <span class="page-iteration">Displayed records: 1-<?= Settings::get('unsplash_per_page') ?> of <?= $this->vars['unsplash']['total'] ?></span>
-    <a href="#" class="page-back" title="Previous page"></a><a href="#" class="page-next" title="Next page"></a>
+    <span class="page-iteration">Displayed records: <?= (($this->vars['page'] ?? 0)-1)*Settings::get('pexels_per_page') ?>-<?= (($this->vars['page']-1)*Settings::get('pexels_per_page'))+Settings::get('unsplash_per_page') ?> of <?= $this->vars['unsplash']['total'] ?></span>
+    <a href="#" data-request-update="unsplash-list: '#unsplash-list'" data-request-data="{query: '<?= $this->vars['search'] ?>',page: <?= ($this->vars['page'])-1 ?>, provider: 'unsplash'}" data-request="onPaginate" class="page-back" title="Previous page"></a><a href="#" class="page-next" title="Next page" data-request-update="unsplash-list: '#unsplash-list'" data-request-data="{query: '<?= $this->vars['search'] ?>',page: <?= ($this->vars['page'])+1 ?>, provider: 'unsplash'}" data-request="onPaginate" ></a>
 </div>

@@ -12,6 +12,6 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 >
 	<div class="btn-group">
 		<a data-control="popup" data-size="giant" data-z-index="2000" data-request-data="{path: '<?= $photo->src->large2x ?>'}" data-handler="onShowPhoto" href="javascript:;" title="<?= trans('snipi.uniquemediafinder::lang.buttons.look') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-eye"></i></a>
-		<a href="#" data-request-data="{qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('pexels_upload_folder','pexels') ?>', fileId:'<?= $photo->id ?>' ,path: '<?= $photo->src->original ?>'}" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i></a>
+		<a href="#" data-folder="<?= Settings::get('pexels_upload_folder','pexels') ?>" data-request-data="{qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('pexels_upload_folder','pexels') ?>', fileId:'<?= $photo->id ?>' ,path: '<?= $photo->src->original ?>'}" data-request-loading="#loader" data-request-error="handlePicError(this)" data-request-success="pictureDownloaded(this)" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i></a>
 	</div>
 </li>

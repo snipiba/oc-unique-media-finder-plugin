@@ -69,15 +69,72 @@ class Plugin extends PluginBase
                 return $widget->makePartial('photo');
             });
 
-            $widget->addDynamicMethod('onUniqueMediaSearch', function() use ($widget) {
+            $widget->addDynamicMethod('onPaginate', function() use ($widget){
 
-                //Set the media path
-                $base = Backend::url('backend/media');
-                $path = base_path() . Config::get('cms.storage.media.path');
+                $widget->vars['search'] = $query = \Input::get('query');
+                $widget->vars['page'] = \Input::get('page');
+                $widget->vars['provider'] = \Input::get('provider');
+
+                if(empty($query)) {
+                   throw new \Exception(trans('snipi.uniquemediafinder::lang.errors.no_search_query')); 
+                }
+                
+                if(false === empty(Settings::get('unsplash_api_key'))) {
+                    $response['unsplash'] = true;
+                    \Unsplash\HttpClient::init([
+                        'applicationId' => Settings::get('unsplash_api_key'),
+                        'utmSource' => Settings::get('unsplash_application_name'),
+                    ]);
+                    
+                    try {    
+                        $photos = \Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
+                        
+                        $response['unsplash'] = [
+                            'results' => ($photos->getTotal() > 0) ? true : false,
+                            'total' => $photos->getTotal(),
+                            'pages' => $photos->getTotalPages(),
+                            'photos' => $photos->getResults(),
+                            'page' => post('page')
+                        ];
+                    } catch(\Exception $e) {
+                        $response['unsplash'] = [
+                            'results' => false,
+                            'error' => $e->getMessage()
+                        ];
+                    }
+                    
+                    
+                }
+                if(false === empty(Settings::get('pexels_api_key'))) {
+                    $response['pexels'] = true;
+
+                    $client = \Http::get('https://api.pexels.com/v1/search?query=' . urlencode($query) . '&page='.\Input::get('page').'&per_page=' . (Settings::get('pexels_per_page')??20), function($http){
+                        $http->header('Authorization', Settings::get('pexels_api_key'));    
+                    });
+                    $body = json_decode($client->body);
+                    $response['pexels'] = [
+                        'results' => ($body->total_results > 0) ? true : false,
+                        'total' => $body->total_results,
+                        'photos' => $body->photos,
+                        'page' => post('page')
+                    ];
+
+                }
+                $widget->vars['unsplash'] = $response['unsplash'];
+                $widget->vars['pexels'] = $response['pexels'];
+                $widget->vars['search'] = $query;
+                return [
+                    '#' . \Input::get('provider').'-list' => $widget->makePartial(\Input::get('provider').'-list', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels']])
+                ];
+            });
+
+            $widget->addDynamicMethod('onUniqueMediaSearch', function() use ($widget) {
 
                 //Get the images & editing values
                 $query = post('query');
                 
+                $widget->vars['provider'] = 'unsplash';
+                $widget->vars['page'] = 1;
                 /*tracelog($checked);*/
                 if(empty($query)) {
                    throw new \Exception(trans('snipi.uniquemediafinder::lang.errors.no_search_query')); 
@@ -90,15 +147,20 @@ class Plugin extends PluginBase
                         'utmSource' => Settings::get('unsplash_application_name'),
                     ]);
 
-                    $photos = \Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
-                    
-                    $response['unsplash'] = [
-                        'results' => ($photos->getTotal() > 0) ? true : false,
-                        'total' => $photos->getTotal(),
-                        'pages' => $photos->getTotalPages(),
-                        'photos' => $photos->getResults()
-                    ];
-                    
+                    try {
+                        $photos = \Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
+                        $response['unsplash'] = [
+                            'results' => ($photos->getTotal() > 0) ? true : false,
+                            'total' => $photos->getTotal(),
+                            'pages' => $photos->getTotalPages(),
+                            'photos' => $photos->getResults()
+                        ];   
+                    } catch(\Exception $e) {
+                        $response['unsplash'] = [
+                            'results' => false,
+                            'error' => $e->getMessage()
+                        ];
+                    }
                     
                 }
                 if(false === empty(Settings::get('pexels_api_key'))) {
