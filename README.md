@@ -1,4 +1,9 @@
+![cover](https://www.snipi.sk/storage/app/media/projekty/pluginy/cover.jpg)
+
 Are u sick from searching images, downloading and reuploading? Here is a light solution for creating all from one place.
+
+## Developer
+If you want know more, you can read [article about this plugin on my blog](https://www.snipi.sk/clanky/octobercms/rozsirenie-medii-o-moznost-vyhadavania-v-databazach)
 
 ## Search for stock photos in Unsplash or Pexels
 For current most popular stock databases is used Unsplash and Pexels integration. Then you are able to obtain api keys for both and use both APIs for searching and downloading pictures.
