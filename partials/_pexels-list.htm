@@ -19,13 +19,13 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 <div class="layout-row">
 	<div class="layout">
 		<div data-control="item-list">
-				<ul class="media-list tiles">
-				<?php 
-				foreach($this->vars['pexels']['photos'] as $photo) {
-					echo $this->makePartial('pexel_photo', ['photo' => $photo]);
-				}
-				?>
-				</ul>
+			<ul class="media-list tiles">
+			<?php 
+			foreach($this->vars['pexels']['photos'] as $photo) {
+				echo $this->makePartial('pexel_photo', ['photo' => $photo]);
+			}
+			?>
+			</ul>
 		</div>
 	</div>
 </div>

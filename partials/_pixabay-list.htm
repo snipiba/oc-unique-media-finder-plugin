@@ -19,14 +19,17 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 <div class="layout-row">
 	<div class="layout">
 		<div data-control="item-list">
-				<ul class="media-list tiles">
-				<?php 
-				foreach($this->vars['pixabay']['photos'] as $photo) {
-					echo $this->makePartial('pixabay_photo', ['photo' => $photo]);
-				}
-				?>
-				</ul>
+			<ul class="media-list tiles">
+			<?php 
+			foreach($this->vars['pixabay']['photos'] as $photo) {
+				echo $this->makePartial('pixabay_photo', ['photo' => $photo]);
+			}
+			?>
+			</ul>
 		</div>
+	</div>
+	<div class="layout" style="padding: 15px 0 0;">
+		<p><img src="/plugins/snipi/uniquemediafinder/assets/img/logo.webp" alt="PIXABAY.com" height="20"/><br/><?= trans('snipi.uniquemediafinder::lang.photo.pixabay_provider_note') ?></p>
 	</div>
 </div>
 <div class="control-pagination">

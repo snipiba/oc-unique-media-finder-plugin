@@ -24,3 +24,6 @@
 1.1.3: Fixed provider in download button photo detail template
 1.2.0:
   - added new provider / Pixabay
+1.2.1:
+  - added notation to list of pixbay photos (requested for accept api full access)
+  - extended pixbay to option "allow full HD download"

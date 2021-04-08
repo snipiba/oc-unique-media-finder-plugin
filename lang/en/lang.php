@@ -81,7 +81,8 @@
 			'royalty_free' => ' ~ royalty free photo stock bank.',
 			'provider_unsplash' => 'Unsplash.com',
 			'provider_pexels' => 'Pexels.com',
-			'provider_pixabay' => 'Pixabay.com'
+			'provider_pixabay' => 'Pixabay.com',
+			'pixabay_provider_note' => 'Showing search results from PIXABAY stock photo databank.'
 		],
 		'exif' => [
 			'make' => 'Camera manufacturer',
