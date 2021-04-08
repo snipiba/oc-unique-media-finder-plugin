@@ -38,7 +38,8 @@
 			'search_for_photo_hint' => 'Zadajte kľúčové slovo ktoré chcete vyhľadávať nad databankami.',
 			'search_for_photo' => 'Vyhľadať',
 			'search_photos' => 'Vyhľadať',
-			'search_for_photo_modal_title' => 'Vyhľadávanie v databankách'
+			'search_for_photo_modal_title' => 'Vyhľadávanie v databankách',
+			'enter_keyword_hit_enter' => 'Napíšte kľúčové slovo a stlačte enter pre začatie hľadania'
  		],
 		'errors' => [
 			'no_search_query' => 'Chcete, alebo nechcete niečo hľadať?'

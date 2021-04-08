@@ -38,7 +38,8 @@
 			'search_for_photo_hint' => 'This keywords will be used for search on all configured api endpoints.',
 			'search_for_photo' => 'Search for',
 			'search_photos' => 'Search now',
-			'search_for_photo_modal_title' => 'Searching'
+			'search_for_photo_modal_title' => 'Searching',
+			'enter_keyword_hit_enter' => 'type keyword and hit enter to perform search'
  		],
 		'errors' => [
 			'no_search_query' => 'Please, provide correct search query. Empty string is not allowed.'
