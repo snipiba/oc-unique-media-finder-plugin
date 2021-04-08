@@ -6,6 +6,7 @@ use Config;
 use Input;
 use Storage;
 use Http;
+use \Unsplash;
 use System\Classes\PluginBase;
 use Backend\Widgets\MediaManager;
 use SNiPI\UniqueMediaFinder\Models\Settings;
@@ -49,18 +50,45 @@ class Plugin extends PluginBase
 
             $widget->addDynamicMethod('onDownloadPhoto', function() use ($widget){
 
-                $widget->vars['path'] = Input::get('path');
-                $widget->vars['file_id'] = Input::get('fileId');
+                $provider = Input::get('provider');
+                $path = Input::get('path');
+                $fileId = Input::get('fileId');
+
+                Switch($provider) {
+                    case 'unsplash':
+                        Unsplash\HttpClient::init([
+                            'applicationId' => Settings::get('unsplash_api_key'),
+                            'utmSource' => Settings::get('unsplash_application_name'),
+                        ]);
+                        $photo = Unsplash\Photo::find($fileId);
+                        $path = $photo->download();                        
+                    break;
+
+                    case 'pexels':
+                        $client = Http::get('https://api.pexels.com/v1/photos/' . $fileId, function($http){
+                        $http->header('Authorization', Settings::get('pexels_api_key'));    
+                    });
+                    $photo = json_decode($client->body);
+                    if($path !== $photo->src->original) {
+                        $path = $photo->src->original;
+                    }
+
+                    break;
+                }
+
+                $widget->vars['path'] = $path;
+                $widget->vars['file_id'] = $fileId;
                 $file = new \System\Models\File;
-                $file->fromUrl(Input::get('path'), Input::get('qs') . '_' . Input::get('fileId').'.jpg');
+                $newFileName = str_slug(Input::get('qs')) . '_' . $provider.'_' . Input::get('fileId').'.jpg';
+                $file->fromUrl($path, $newFileName);
                 $savedFile = $file->save();
-                $filename = $file->getLocalPath();
+                $filename = $file->getLocalPath();                
                 try {
                     if(!Storage::exists('media/' . Input::get('folder'))) {
                         Storage::makeDirectory('media/' . Input::get('folder'));
                     }
-                    Storage::copy(str_replace('/app','',str_replace('\app','',str_replace(storage_path(),'',$file->getLocalPath()))) , 'media/' . Input::get('folder') . '/' . basename($filename));
-                    sleep(2);
+                    Storage::copy(str_replace('/app','',str_replace('\app','',str_replace(storage_path(),'',$file->getLocalPath()))) , 'media/' . Input::get('folder') . '/' . $newFileName);
+                    sleep(1);
                     $file->delete();
                 } catch(Exception $e) {
 
@@ -73,11 +101,11 @@ class Plugin extends PluginBase
                 Switch($type) {
 
                     case 'unsplash':
-                        \Unsplash\HttpClient::init([
+                        Unsplash\HttpClient::init([
                             'applicationId' => Settings::get('unsplash_api_key'),
                             'utmSource' => Settings::get('unsplash_application_name'),
                         ]);
-                        $photo = \Unsplash\Photo::find($id)->toArray();
+                        $photo = Unsplash\Photo::find($id)->toArray();
                     break;
 
                     case 'pexels':
@@ -106,13 +134,13 @@ class Plugin extends PluginBase
                 
                 if(false === empty(Settings::get('unsplash_api_key'))) {
                     $response['unsplash'] = true;
-                    \Unsplash\HttpClient::init([
+                    Unsplash\HttpClient::init([
                         'applicationId' => Settings::get('unsplash_api_key'),
                         'utmSource' => Settings::get('unsplash_application_name'),
                     ]);
                     
                     try {    
-                        $photos = \Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
+                        $photos = Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
                         
                         $response['unsplash'] = [
                             'results' => ($photos->getTotal() > 0) ? true : false,
@@ -167,13 +195,13 @@ class Plugin extends PluginBase
                 
                 if(false === empty(Settings::get('unsplash_api_key'))) {
                     $response['unsplash'] = true;
-                    \Unsplash\HttpClient::init([
+                    Unsplash\HttpClient::init([
                         'applicationId' => Settings::get('unsplash_api_key'),
                         'utmSource' => Settings::get('unsplash_application_name'),
                     ]);
 
                     try {
-                        $photos = \Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
+                        $photos = Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
                         $response['unsplash'] = [
                             'results' => ($photos->getTotal() > 0) ? true : false,
                             'total' => $photos->getTotal(),

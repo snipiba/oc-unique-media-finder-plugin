@@ -14,3 +14,9 @@
   - Translated string to slovak
   - updated detail view of photography
   - added better pagination
+1.1.1:
+  - fixed authorization on unsplash download request (401 response / Unauthorized)
+  - preparing multiple options for download HIGH / MEDIUM / LOW quality
+  - removed search button and appended enter handling
+  - preparing for check of rate limit info on settings page
+  - preparing dashboard widget to show graph of search rate limits
