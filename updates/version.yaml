@@ -20,3 +20,4 @@
   - removed search button and appended enter handling
   - preparing for check of rate limit info on settings page
   - preparing dashboard widget to show graph of search rate limits
+1.1.2: Fixed typo in template
