@@ -1,0 +1,35 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<div class="layout-row">
+	<div class="layout">
+		<div class="layout-row min-size">
+			<div class="panel padding-less border-bottom">
+			    <div class="layout">
+			        <div class="layout-cell">
+			            <div class="layout-row" id="dsds">
+			                <?= trans_choice('snipi.uniquemediafinder::lang.results.found', $this->vars['pixabay']['total']) ?> &#8222;<?= $this->vars['search'] ?>&#8223;
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="layout-row">
+	<div class="layout">
+		<div data-control="item-list">
+				<ul class="media-list tiles">
+				<?php 
+				foreach($this->vars['pixabay']['photos'] as $photo) {
+					echo $this->makePartial('pixabay_photo', ['photo' => $photo]);
+				}
+				?>
+				</ul>
+		</div>
+	</div>
+</div>
+<div class="control-pagination">
+    <span class="page-iteration">Displayed records: <?=  (($this->vars['page'] ?? 0)-1)*Settings::get('pixabay_per_page') ?>-<?= (($this->vars['page']-1)*Settings::get('pixabay_per_page'))+Settings::get('unsplash_per_page') ?> of <?= $this->vars['pixabay']['total'] ?></span>
+    <a href="#" data-request-update="pixabay-list: '#pixabay-list'" data-request-data="{query: '<?= $this->vars['search'] ?>',page: <?= ($this->vars['page'])-1 ?>, provider: 'pixabay'}" data-request="onPaginate" class="page-back" title="Previous page"></a><a href="#" data-request="onPaginate" class="page-next" title="Next page" data-request-update="pixabay-list: '#pixabay-list'" data-request-data="{query: '<?= $this->vars['search'] ?>',page: <?= ($this->vars['page'])+1 ?>, provider: 'pixabay'}" ></a>
+</div>

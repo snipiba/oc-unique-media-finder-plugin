@@ -21,3 +21,6 @@
   - preparing for check of rate limit info on settings page
   - preparing dashboard widget to show graph of search rate limits
 1.1.2: Fixed typo in template
+1.1.3: Fixed provider in download button photo detail template
+1.2.0:
+  - added new provider / Pixabay

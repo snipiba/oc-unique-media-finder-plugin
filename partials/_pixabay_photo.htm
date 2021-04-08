@@ -1,0 +1,17 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<li data-type="media-item"
+    tabindex="0"
+    data-path="<?= $photo->largeImageURL ?>"
+    data-user="<?= $photo->user ?>" 
+    data-id="<?= $photo->id ?>" 
+    data-download="<?= $photo->largeImageURL ?>"
+    class="media-item"
+    style="background-color:#cacaca;background-image: url(<?= $photo->webformatURL ?>);background-size:contain;background-position: center;background-repeat:no-repeat;"
+>
+	<div class="btn-group">
+		<a data-control="popup" data-size="custom" data-z-index="2000" data-request-data="{type:'pixabay', search: '<?= $this->vars['search'] ?>',id: '<?= $photo->id ?>', path: '<?= $photo->largeImageURL ?>'}" data-handler="onShowPhoto" href="javascript:;" title="<?= trans('snipi.uniquemediafinder::lang.buttons.look') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-eye"></i></a>
+		<a href="#" data-folder="<?= Settings::get('pixabay_upload_folder','pixabay') ?>" data-request-data="{provider:'pixabay',qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('pixabay_upload_folder','pixabay') ?>', fileId:'<?= $photo->id ?>' ,path: '<?= $photo->largeImageURL ?>'}" data-request-loading="#loader" data-request-error="handlePicError(this)" data-request-success="pictureDownloaded(this)" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i></a>
+	</div>
+</li>

@@ -16,23 +16,32 @@
 			'unsplash_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://unsplash.com/oauth/applications/new" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.',
 			'pexels_title' => 'Configure API settings for PEXELS',
 			'pexels_about' => '<a href="https://www.pexels.com/about/" target="_blank">PEXELS</a> is a free photo gallery that provides royalty free stock photos.',
-			'pexels_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://www.pexels.com/api/" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.'
+			'pexels_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://www.pexels.com/api/" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.',
+			'pixabay_title' => 'Configure API settings for PIXABAY',
+			'pixabay_about' => '<a href="https://www.pixabay.com/about/" target="_blank">PEXELS</a> is a free photo gallery that provides royalty free stock photos.',
+			'pixabay_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://www.pixabay.com/api/" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.'
 		],
 		'settings' => [
 			'tab_unsplash' => 'Unsplash API',
-			'tab_pexels' => 'Pexels API',
 			'unsplash_api_key' => 'API key',
 			'unsplash_api_key_comment' => 'Enter API key obtained in UNSPLASH page',
-			'pexels_api_key' => 'API key',
-			'pexels_api_key_comment' => 'Enter API key obtained in PEXELS page',
 			'unsplash_application_name' => 'Application name',
 			'unsplash_application_name_comment' => 'Name of your application created on unsplash.com page',
 			'unsplash_per_page' => 'Limit results per page',
-			'pexels_per_page' => 'Limit results per page',
 			'unsplash_upload_folder' => 'Directory to download',
 			'unsplash_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
+			'tab_pexels' => 'Pexels API',
+			'pexels_api_key' => 'API key',
+			'pexels_api_key_comment' => 'Enter API key obtained in PEXELS page',
+			'pexels_per_page' => 'Limit results per page',
 			'pexels_upload_folder' => 'Directory to download',
 			'pexels_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
+			'tab_pixabay' => 'Pixabay API',
+			'pixabay_api_key' => 'API key',
+			'pixabay_api_key_comment' => 'Enter API key obtained in PEXELS page',
+			'pixabay_per_page' => 'Limit results per page',
+			'pixabay_upload_folder' => 'Directory to download',
+			'pixabay_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
 		],
 		'forms' => [
 			'search_for_photo_hint' => 'This keywords will be used for search on all configured api endpoints.',
@@ -71,7 +80,8 @@
 			'provided_by' => 'This photography is provided by',
 			'royalty_free' => ' ~ royalty free photo stock bank.',
 			'provider_unsplash' => 'Unsplash.com',
-			'provider_pexels' => 'Pexels.com'
+			'provider_pexels' => 'Pexels.com',
+			'provider_pixabay' => 'Pixabay.com'
 		],
 		'exif' => [
 			'make' => 'Camera manufacturer',

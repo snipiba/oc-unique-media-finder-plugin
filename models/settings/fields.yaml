@@ -49,14 +49,12 @@ tabs:
       label: snipi.uniquemediafinder::lang.settings.pexels_api_key
       commentAbove: snipi.uniquemediafinder::lang.settings.pexels_api_key_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels
-
     pexels_upload_folder:
       span: auto
       type: text
       label: snipi.uniquemediafinder::lang.settings.pexels_upload_folder
       commentAbove: snipi.uniquemediafinder::lang.settings.pexels_upload_folder_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels
-
     pexels_per_page:
       span: auto
       type: number
@@ -64,3 +62,25 @@ tabs:
       label: snipi.uniquemediafinder::lang.settings.pexels_per_page
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels
 
+    pixabay_introduction:
+        type: partial
+        path: $/snipi/uniquemediafinder/partials/_pixabay_introduction.htm
+        tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+    pixabay_api_key:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.pixabay_api_key
+      commentAbove: snipi.uniquemediafinder::lang.settings.pixabay_api_key_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+    pixabay_upload_folder:
+      span: auto
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.pixabay_upload_folder
+      commentAbove: snipi.uniquemediafinder::lang.settings.pixabay_upload_folder_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+    pixabay_per_page:
+      span: auto
+      type: number
+      default: 20
+      label: snipi.uniquemediafinder::lang.settings.pixabay_per_page
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay

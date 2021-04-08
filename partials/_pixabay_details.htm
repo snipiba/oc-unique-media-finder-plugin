@@ -1,0 +1,36 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<div class="scoreboard">
+    <div data-control="toolbar">
+
+        <div class="scoreboard-item title-value">
+            <h4><?= trans('snipi.uniquemediafinder::lang.photo.downloads') ?></h4>
+            <p class="oc-icon-download"><?= $this->vars['photo']['downloads'] ?></p>
+            <p class="description"><?= trans('snipi.uniquemediafinder::lang.photo.views') ?>: <?= $this->vars['photo']['views'] ?></p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4><?= $this->vars['photo']['user'] ?></h4>
+            <p>
+                <img width="30" src="<?= $this->vars['photo']['userImageURL'] ?>"> <?= $this->vars['photo']['user'] ?>
+        
+            </p>
+        </div>
+    </div>
+    <div data-control="toolbar">
+        
+        <div class="scoreboard-item title-value">
+            <h4><?= trans('snipi.uniquemediafinder::lang.photo.dimensions') ?></h4>
+            <p><?= $this->vars['photo']['imageWidth'] ?> x <?= $this->vars['photo']['imageHeight'] ?>px</p>
+        </div>
+        <div class="scoreboard-item title-value">
+            <h4><?= trans('snipi.uniquemediafinder::lang.photo.download_photo') ?></h4>
+            <a href="#" data-folder="<?= Settings::get('pixabay_upload_folder','pixabay') ?>" data-request-data="{provider:'pixabay',qs: '<?= $this->vars['search'] ?>', folder: '<?= Settings::get('pixabay_upload_folder','pixabay') ?>', fileId:'<?= $this->vars['photo']['id'] ?>' ,path: '<?= $this->vars['photo']['largeImageURL'] ?>'}" data-request-loading="#loader" data-request-error="handlePicError(this)" data-request-success="pictureDownloaded(this)" data-request="onDownloadPhoto" title="<?= trans('snipi.uniquemediafinder::lang.buttons.download') ?>" data-toggle="tooltip" class="btn btn-default"><i class="icon-download"></i> <span><?= trans('snipi.uniquemediafinder::lang.buttons.download') ?> <small>(fodler: <?= Settings::get('pixabay_upload_folder','pixabay') ?>)</small></span></a>
+        </div>
+    </div>
+    <h4>Sorry for content loss</h4>
+    <p>I will apologize for this small amout of data for photos from Pexels.com, but, pixabay API not provide more informations about photographer or photography as well.</p>
+    <p>I will dig into it later, if there are some other endpoints, to get more informations for photos or authors.</p>
+
+    
+</div>
