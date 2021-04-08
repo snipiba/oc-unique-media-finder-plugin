@@ -81,7 +81,8 @@
 			'royalty_free' => ' ~ databanky s fotografiami zdarma.',
 			'provider_unsplash' => 'Unsplash.com',
 			'provider_pexels' => 'Pexels.com',
-			'provider_pixabay' => 'Pixabay.com'
+			'provider_pixabay' => 'Pixabay.com',
+			'pixabay_provider_note' => 'Fotografie v náhľadoch sú z databanky PIXABAY.'
 		],
 		'exif' => [
 			'make' => 'Výrobca fotoaparátu',

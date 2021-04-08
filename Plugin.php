@@ -130,6 +130,24 @@ class Plugin extends PluginBase
 
             $widget->addDynamicMethod('onPaginate', function() use ($widget){
 
+                $response['pixabay'] = [
+                    'results' => false,
+                    'total' => 0,
+                    'photos' => 0,
+                    'page' => 1
+                ];
+                $response['pexels'] = [
+                    'results' => false,
+                    'total' => 0,
+                    'photos' => 0,
+                    'page' => 1
+                ];
+                $response['unsplash'] = [
+                    'results' => false,
+                    'total' => 0,
+                    'photos' => 0,
+                    'page' => 1
+                ];
                 $widget->vars['search'] = $query = Input::get('query');
                 $widget->vars['page'] = Input::get('page');
                 $widget->vars['provider'] = Input::get('provider');
@@ -147,14 +165,15 @@ class Plugin extends PluginBase
                     
                     try {    
                         $photos = Unsplash\Search::photos($query, post('page') ?? 1, Settings::get('unsplash_per_page') ?? 20, null);
-                        
-                        $response['unsplash'] = [
-                            'results' => ($photos->getTotal() > 0) ? true : false,
-                            'total' => $photos->getTotal(),
-                            'pages' => $photos->getTotalPages(),
-                            'photos' => $photos->getResults(),
-                            'page' => post('page')
-                        ];
+                        if($photos) {
+                            $response['unsplash'] = [
+                                'results' => ($photos->getTotal() > 0) ? true : false,
+                                'total' => $photos->getTotal(),
+                                'pages' => $photos->getTotalPages(),
+                                'photos' => $photos->getResults(),
+                                'page' => post('page')
+                            ];
+                        }
                     } catch(\Exception $e) {
                         $response['unsplash'] = [
                             'results' => false,
@@ -171,12 +190,14 @@ class Plugin extends PluginBase
                         $http->header('Authorization', Settings::get('pexels_api_key'));    
                     });
                     $body = json_decode($client->body);
-                    $response['pexels'] = [
-                        'results' => ($body->total_results > 0) ? true : false,
-                        'total' => $body->total_results,
-                        'photos' => $body->photos,
-                        'page' => post('page')
-                    ];
+                    if($body) {
+                        $response['pexels'] = [
+                            'results' => ($body->total_results > 0) ? true : false,
+                            'total' => $body->total_results,
+                            'photos' => $body->photos,
+                            'page' => post('page')
+                        ];
+                    }
 
                 }
 
@@ -185,12 +206,14 @@ class Plugin extends PluginBase
 
                     $client = Http::get('https://pixabay.com/api?key='.Settings::get('pixabay_api_key').'&q=' . urlencode($query) . '&image_type=photo&page='.Input::get('page').'&per_page=' . (Settings::get('pixabay_per_page')??20));
                     $body = json_decode($client->body);
-                    $response['pixabay'] = [
-                        'results' => ($body->totalHits > 0) ? true : false,
-                        'total' => $body->totalHits,
-                        'photos' => $body->hits,
-                        'page' => post('page')
-                    ];
+                    if($body) {
+                        $response['pixabay'] = [
+                            'results' => ($body->totalHits > 0) ? true : false,
+                            'total' => $body->totalHits,
+                            'photos' => $body->hits,
+                            'page' => post('page')
+                        ];
+                    }
 
                 }
                 $widget->vars['unsplash'] = $response['unsplash'];
@@ -204,6 +227,24 @@ class Plugin extends PluginBase
 
             $widget->addDynamicMethod('onUniqueMediaSearch', function() use ($widget) {
 
+                $response['pixabay'] = [
+                    'results' => false,
+                    'total' => 0,
+                    'photos' => 0,
+                    'page' => 1
+                ];
+                $response['pexels'] = [
+                    'results' => false,
+                    'total' => 0,
+                    'photos' => 0,
+                    'page' => 1
+                ];
+                $response['unsplash'] = [
+                    'results' => false,
+                    'total' => 0,
+                    'photos' => 0,
+                    'page' => 1
+                ];
                 //Get the images & editing values
                 $query = post('query');
                 
@@ -244,11 +285,13 @@ class Plugin extends PluginBase
                         $http->header('Authorization', Settings::get('pexels_api_key'));    
                     });
                     $body = json_decode($client->body);
-                    $response['pexels'] = [
-                        'results' => ($body->total_results > 0) ? true : false,
-                        'total' => $body->total_results,
-                        'photos' => $body->photos
-                    ];
+                    if($body) {
+                        $response['pexels'] = [
+                            'results' => ($body->total_results > 0) ? true : false,
+                            'total' => $body->total_results,
+                            'photos' => $body->photos
+                        ];
+                    }
 
                 }
 
@@ -257,12 +300,14 @@ class Plugin extends PluginBase
 
                     $client = Http::get('https://pixabay.com/api?key='.Settings::get('pixabay_api_key').'&q=' . urlencode($query) . '&image_type=photo&per_page=' . (Settings::get('pixabay_per_page')??20));
                     $body = json_decode($client->body);
-                    $response['pixabay'] = [
-                        'results' => ($body->totalHits > 0) ? true : false,
-                        'total' => $body->totalHits,
-                        'photos' => $body->hits,
-                        'page' => post('page')
-                    ];
+                    if($body) {
+                        $response['pixabay'] = [
+                            'results' => ($body->totalHits > 0) ? true : false,
+                            'total' => $body->totalHits,
+                            'photos' => $body->hits,
+                            'page' => post('page')
+                        ];
+                    }
 
                 }
                 $widget->vars['unsplash'] = $response['unsplash'];
