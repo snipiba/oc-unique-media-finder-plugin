@@ -16,7 +16,10 @@
 			'unsplash_api_key' => 'Aby ste vedeli vyhľadávať nad databankou, je potrebné aby ste získali <a href="https://unsplash.com/oauth/applications/new" target="_blank">API kľúč</a>. Tento plugin pracuje v READ ONLY móde, takže nebude vytvárať žiadne autorizácie a preto stačí len API kľúč.',
 			'pexels_title' => 'Konfigurácia PEXELS',
 			'pexels_about' => '<a href="https://www.pexels.com/about/" target="_blank">PEXELS</a> je rovnako jednou z mála databánk, ktorá ponúka kvalitné fotografie a videá, preto som sa rozhodol, že pridám aj tento endpoint.',
-			'pexels_api_key' => 'Aby aj toto vyhľadávanie fungovalo korektne, je potrebné získať <a href="https://www.pexels.com/api/" target="_blank">API kľúč</a>. Tento endpoint tiež funguje v READ ONLY móde.'
+			'pexels_api_key' => 'Aby aj toto vyhľadávanie fungovalo korektne, je potrebné získať <a href="https://www.pexels.com/api/" target="_blank">API kľúč</a>. Tento endpoint tiež funguje v READ ONLY móde.',
+			'pixabay_title' => 'Configure API settings for PIXABAY',
+			'pixabay_about' => '<a href="https://www.pixabay.com/about/" target="_blank">PEXELS</a> is a free photo gallery that provides royalty free stock photos.',
+			'pixabay_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://www.pixabay.com/api/" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.'
 		],
 		'settings' => [
 			'tab_unsplash' => 'Unsplash API',
@@ -33,6 +36,12 @@
 			'unsplash_upload_folder_comment' => 'Zadajte adresár do ktorého chcete fotografie ukladať. Pokiaľ adresár neexistuje, pri prvom stiahnutí fotografie sa automaticky vytvorí.',
 			'pexels_upload_folder' => 'Ukladať fotky do adresára',
 			'pexels_upload_folder_comment' => 'Zadajte adresár do ktorého chcete fotografie ukladať. Pokiaľ adresár neexistuje, pri prvom stiahnutí fotografie sa automaticky vytvorí.',
+			'tab_pixabay' => 'Pixabay API',
+			'pixabay_api_key' => 'API key',
+			'pixabay_api_key_comment' => 'Enter API key obtained in PEXELS page',
+			'pixabay_per_page' => 'Limit results per page',
+			'pixabay_upload_folder' => 'Directory to download',
+			'pixabay_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
 		],
 		'forms' => [
 			'search_for_photo_hint' => 'Zadajte kľúčové slovo ktoré chcete vyhľadávať nad databankami.',
@@ -71,7 +80,8 @@
 			'provided_by' => 'Táto fotografia je súčasťou ',
 			'royalty_free' => ' ~ databanky s fotografiami zdarma.',
 			'provider_unsplash' => 'Unsplash.com',
-			'provider_pexels' => 'Pexels.com'
+			'provider_pexels' => 'Pexels.com',
+			'provider_pixabay' => 'Pixabay.com'
 		],
 		'exif' => [
 			'make' => 'Výrobca fotoaparátu',

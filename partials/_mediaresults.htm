@@ -10,9 +10,14 @@
         <li <?php if($this->vars['provider'] == 'unsplash'): ?>class="active"<?php endif; ?>><a href="#primaryTabOne">Unsplash</a></li>
         <?php
         endif;
-    	if($this->vars['pexels']['results']):
-    	?>
+        if($this->vars['pexels']['results']):
+        ?>
         <li <?php if($this->vars['provider'] == 'pexels'): ?>class="active"<?php endif; ?>><a href="#primaryTabTwo">Pexels</a></li>
+        <?php
+        endif;
+        if($this->vars['pixabay']['results']):
+        ?>
+        <li <?php if($this->vars['provider'] == 'pixabay'): ?>class="active"<?php endif; ?>><a href="#primaryTabThree">Pixabay</a></li>
         <?php
         endif;
         ?>
@@ -28,11 +33,20 @@
         </div>
         <?php
         endif;
-    	if($this->vars['pexels']['results']):
-    	?>
+        if($this->vars['pexels']['results']):
+        ?>
         <div class="tab-pane <?php if($this->vars['provider'] == 'pexels'): ?>active<?php endif; ?>">
             <div id="pexels-list">
                 <?= $this->makePartial('pexels-list') ?>
+            </div>
+        </div>
+        <?php
+        endif;
+        if($this->vars['pixabay']['results']):
+        ?>
+        <div class="tab-pane <?php if($this->vars['provider'] == 'pixabay'): ?>active<?php endif; ?>">
+            <div id="pixabay-list">
+                <?= $this->makePartial('pixabay-list') ?>
             </div>
         </div>
         <?php

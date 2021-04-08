@@ -114,6 +114,12 @@ class Plugin extends PluginBase
                     });
                     $photo = json_decode($client->body,true);
                     break;
+
+                    case 'pixabay':
+                    $client = Http::get('https://pixabay.com/api?key='.Settings::get('pixabay_api_key').'&id=' . $id);
+                    $photoData = json_decode($client->body,true);
+                    $photo = $photoData['hits'][0];
+                    break;
                 }
                 $widget->vars['photo'] = $photo;
                 $widget->vars['type'] = $type;
@@ -173,11 +179,26 @@ class Plugin extends PluginBase
                     ];
 
                 }
+
+                if(false === empty(Settings::get('pixabay_api_key'))) {
+                    $response['pixabay'] = true;
+
+                    $client = Http::get('https://pixabay.com/api?key='.Settings::get('pixabay_api_key').'&q=' . urlencode($query) . '&image_type=photo&page='.Input::get('page').'&per_page=' . (Settings::get('pixabay_per_page')??20));
+                    $body = json_decode($client->body);
+                    $response['pixabay'] = [
+                        'results' => ($body->totalHits > 0) ? true : false,
+                        'total' => $body->totalHits,
+                        'photos' => $body->hits,
+                        'page' => post('page')
+                    ];
+
+                }
                 $widget->vars['unsplash'] = $response['unsplash'];
                 $widget->vars['pexels'] = $response['pexels'];
+                $widget->vars['pixabay'] = $response['pixabay'];
                 $widget->vars['search'] = $query;
                 return [
-                    '#' . Input::get('provider').'-list' => $widget->makePartial(Input::get('provider').'-list', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels']])
+                    '#' . Input::get('provider').'-list' => $widget->makePartial(Input::get('provider').'-list', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels'], 'pixabay' => $response['pixabay']])
                 ];
             });
 
@@ -230,11 +251,26 @@ class Plugin extends PluginBase
                     ];
 
                 }
+
+                if(false === empty(Settings::get('pixabay_api_key'))) {
+                    $response['pixabay'] = true;
+
+                    $client = Http::get('https://pixabay.com/api?key='.Settings::get('pixabay_api_key').'&q=' . urlencode($query) . '&image_type=photo&per_page=' . (Settings::get('pixabay_per_page')??20));
+                    $body = json_decode($client->body);
+                    $response['pixabay'] = [
+                        'results' => ($body->totalHits > 0) ? true : false,
+                        'total' => $body->totalHits,
+                        'photos' => $body->hits,
+                        'page' => post('page')
+                    ];
+
+                }
                 $widget->vars['unsplash'] = $response['unsplash'];
                 $widget->vars['pexels'] = $response['pexels'];
+                $widget->vars['pixabay'] = $response['pixabay'];
                 $widget->vars['search'] = $query;
                 return [
-                    '#mediaResults' => $widget->makePartial('mediaresults', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels']])
+                    '#mediaResults' => $widget->makePartial('mediaresults', ['unsplash' => $response['unsplash'], 'pexels' => $response['pexels'], 'pixabay' => $response['pixabay']])
                 ];
             });            
 
