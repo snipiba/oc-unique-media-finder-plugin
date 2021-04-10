@@ -1,0 +1,43 @@
+<button style="outline:none;opacity: 1;position: absolute; top:-15px;right:-15px;font-size:30px;background: #fff;border-radius:50%;width: 50px;height:50px;text-align:center;line-height: 50px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+<div class="layout whiteboard">
+	<div class="layout-cell p-b-0 m-b-0 layout-row panel min-size border-bottom">
+		<div class="scoreboard">
+		    <div data-control="toolbar">
+		        <div class="scoreboard-item title-value">
+		            <h4>Author</h4>
+		            <p><?= $photo['photographer'] ?></p>
+		        </div>
+		        <div class="scoreboard-item title-value">
+		            <h4><?= trans('snipi.uniquemediafinder::lang.photo.dimensions') ?></h4>
+		            <p><?= $photo['width'] ?> x <?= $photo['height'] ?>px</p>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<div class="layout-row no-padding">
+		<div class="layout">
+			<div id="image-preview" class="layout-cell panel no-padding" style="background-color: <?= $photo['avg_color'] ?>;">
+				<img src="<?= $photo['src']['large2x'] ?>" />
+			</div>
+			<div class="layout-cell border-left panel">
+				
+		        <div class="control-tabs primary-tabs" data-control="tab">
+				    <ul class="nav nav-tabs">
+				        <li><a href="#primaryTabOne">Dump</a></li>
+				        <li><a href="#primaryTabThree">Autor</a></li>
+				    </ul>
+				    <div class="tab-content">
+				        <div class="tab-pane">
+				            <?php dump($photo); ?>
+				        </div>
+				        <div class="tab-pane">
+				            autor
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

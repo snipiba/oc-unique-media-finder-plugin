@@ -7,80 +7,212 @@ tabs:
   fields:
     unsplash_introduction:
         type: partial
-        path: $/snipi/uniquemediafinder/partials/_unsplash_introduction.htm
+        path: $/snipi/uniquemediafinder/partials/unsplash/introduction.htm
         tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
 
     unsplash_api_key:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.unsplash_api_key
-      commentAbove: snipi.uniquemediafinder::lang.settings.unsplash_api_key_comment
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_api_key
+      commentAbove: snipi.uniquemediafinder::unsplash.settings.unsplash_api_key_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
 
     unsplash_upload_folder:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.unsplash_upload_folder
-      commentAbove: snipi.uniquemediafinder::lang.settings.unsplash_upload_folder_comment
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_upload_folder
+      commentAbove: snipi.uniquemediafinder::unsplash.settings.unsplash_upload_folder_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
 
     unsplash_application_name:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.unsplash_application_name
-      commentAbove: snipi.uniquemediafinder::lang.settings.unsplash_application_name_comment
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_application_name
+      commentAbove: snipi.uniquemediafinder::unsplash.settings.unsplash_application_name_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
 
     unsplash_per_page:
       span: auto
       type: number
       default: 20
-      label: snipi.uniquemediafinder::lang.settings.unsplash_per_page
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_per_page
       tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+    unsplash_limit:
+      type: number
+      span: left
+      cssClass: hidden
+      disabled: true
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_limit
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
+    unsplash_remain:
+      type: number
+      span: left
+      cssClass: hidden
+      disabled: true
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_remain
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+
 
 
     pexels_introduction:
         type: partial
-        path: $/snipi/uniquemediafinder/partials/_pexels_introduction.htm
+        path: $/snipi/uniquemediafinder/partials/pexels/introduction.htm
         tab: snipi.uniquemediafinder::lang.settings.tab_pexels
     pexels_api_key:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.pexels_api_key
-      commentAbove: snipi.uniquemediafinder::lang.settings.pexels_api_key_comment
+      label: snipi.uniquemediafinder::pexels.settings.pexels_api_key
+      commentAbove: snipi.uniquemediafinder::pexels.settings.pexels_api_key_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels
     pexels_upload_folder:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.pexels_upload_folder
-      commentAbove: snipi.uniquemediafinder::lang.settings.pexels_upload_folder_comment
+      label: snipi.uniquemediafinder::pexels.settings.pexels_upload_folder
+      commentAbove: snipi.uniquemediafinder::pexels.settings.pexels_upload_folder_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels
     pexels_per_page:
       span: auto
       type: number
       default: 20
-      label: snipi.uniquemediafinder::lang.settings.pexels_per_page
+      label: snipi.uniquemediafinder::pexels.settings.pexels_per_page
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+
+    pexels_limit:
+      type: number
+      cssClass: hidden
+      label: snipi.uniquemediafinder::pexels.settings.pexels_limit
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+    pexels_limit_reset:
+      type: number
+      cssClass: hidden
+      label: snipi.uniquemediafinder::pexels.settings.pexels_limit_reset
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+
+    pexels_remain:
+      type: number
+      cssClass: hidden
+      label: snipi.uniquemediafinder::pexels.settings.pexels_remain  
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels    
 
     pixabay_introduction:
         type: partial
-        path: $/snipi/uniquemediafinder/partials/_pixabay_introduction.htm
+        path: $/snipi/uniquemediafinder/partials/pixabay/introduction.htm
         tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
     pixabay_api_key:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.pixabay_api_key
-      commentAbove: snipi.uniquemediafinder::lang.settings.pixabay_api_key_comment
+      label: snipi.uniquemediafinder::pixabay.settings.pixabay_api_key
+      commentAbove: snipi.uniquemediafinder::pixabay.settings.pixabay_api_key_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
     pixabay_upload_folder:
       span: auto
       type: text
-      label: snipi.uniquemediafinder::lang.settings.pixabay_upload_folder
-      commentAbove: snipi.uniquemediafinder::lang.settings.pixabay_upload_folder_comment
+      label: snipi.uniquemediafinder::pixabay.settings.pixabay_upload_folder
+      commentAbove: snipi.uniquemediafinder::pixabay.settings.pixabay_upload_folder_comment
       tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
     pixabay_per_page:
       span: auto
       type: number
       default: 20
-      label: snipi.uniquemediafinder::lang.settings.pixabay_per_page
+      label: snipi.uniquemediafinder::pixabay.settings.pixabay_per_page
       tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+    pixabay_full_access_api:
+      span: auto
+      type: checkbox
+      label: snipi.uniquemediafinder::pixabay.settings.pixabay_full_access_api
+      commentAbove: snipi.uniquemediafinder::pixabay.settings.pixabay_full_access_api_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+    pixabay_download_size:
+      span: auto
+      type: dropdown
+      trigger:
+        action: show # (or other action)
+        field: pixabay_full_access_api
+        condition: checked # (or other condition)
+      label: snipi.uniquemediafinder::pixabay.settings.pixabay_download_size
+      commentAbove: snipi.uniquemediafinder::pixabay.settings.pixabay_download_size_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+      options:
+        image: snipi.uniquemediafinder::pixabay.settings.original
+        fullHD: snipi.uniquemediafinder::pixabay.settings.fullhd
+        largeImage: snipi.uniquemediafinder::pixabay.settings.large_image
+        webformat: snipi.uniquemediafinder::pixabay.settings.webformat
+        small: snipi.uniquemediafinder::pixabay.settings.small
+
+    pixabay_limit:
+      type: number
+      cssClass: hidden
+      label: snipi.uniquemediafinder::lang.settings.pixabay_limit
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+
+    pixabay_remain:
+      type: number
+      cssClass: hidden
+      label: snipi.uniquemediafinder::lang.settings.pixabay_remain     
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay 
+
+
+    notify_introduction:
+        type: partial
+        path: $/snipi/uniquemediafinder/partials/notifications/introduction.htm
+        tab: snipi.uniquemediafinder::lang.settings.tab_notifications
+
+    notify_low_rates:
+      type: checkbox
+      label: snipi.uniquemediafinder::lang.settings.notify_low_rates
+      tab: snipi.uniquemediafinder::lang.settings.tab_notifications
+    notify_email:
+      type: text
+      label: snipi.uniquemediafinder::lang.settings.notify_email
+      tab: snipi.uniquemediafinder::lang.settings.tab_notifications
+    notify_template:
+      type: dropdown
+      label: snipi.uniquemediafinder::lang.settings.notify_template
+      tab: snipi.uniquemediafinder::lang.settings.tab_notifications
+
+    database_intro:
+      type: partial
+      path: $/snipi/uniquemediafinder/partials/database/introduction.htm
+      tab: snipi.uniquemediafinder::lang.settings.tab_database
+
+    use_database:
+      type: checkbox
+      span: auto
+      label: snipi.uniquemediafinder::lang.settings.use_database
+      commentAbove: snipi.uniquemediafinder::lang.settings.use_database_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_database
+
+    store_search:
+      type: checkbox
+      span: auto
+      label: snipi.uniquemediafinder::lang.settings.store_search
+      commentAbove: snipi.uniquemediafinder::lang.settings.store_search_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_database
+
+    store_errors:
+      type: checkbox
+      span: auto
+      label: snipi.uniquemediafinder::lang.settings.store_errors
+      commentAbove: snipi.uniquemediafinder::lang.settings.store_errors_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_database
+
+    store_metadata:
+      type: checkbox
+      span: auto
+      label: snipi.uniquemediafinder::lang.settings.store_metadata
+      commentAbove: snipi.uniquemediafinder::lang.settings.store_metadata_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_database
+
+    processing_intro:
+      type: partial
+      path: $/snipi/uniquemediafinder/partials/processing/introduction.htm
+      tab: snipi.uniquemediafinder::lang.settings.tab_processing
+
+    allow_postprocessing:
+      type: checkbox
+      span: auto
+      label: snipi.uniquemediafinder::lang.settings.allow_postprocessing
+      commentAbove: snipi.uniquemediafinder::lang.settings.allow_postprocessing_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_processing

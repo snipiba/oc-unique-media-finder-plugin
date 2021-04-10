@@ -1,0 +1,103 @@
+<label><?= trans('snipi.uniquemediafinder::lang.metadata') ?></label>
+
+<?php
+if(!empty($metadata)):
+?>
+<table class="name-value-list">
+    <tbody>
+	    <tr>
+	        <th>Provider</th>
+	        <td><?= strtoupper($metadata['provider']) ?></td>
+	    </tr>
+	    <tr>
+	        <th>Dimensions</th>
+	        <td>
+	        	<?php	        	
+	        	if(array_key_exists('imageWidth', $metadata['raw_data'])) {
+	        		echo $metadata['raw_data']['imageWidth'] .' x '. $metadata['raw_data']['imageHeight'];
+	        	} else {
+	        		echo $metadata['raw_data']['width'] . ' x '. $metadata['raw_data']['height'];
+	        }   ?> px
+	        </td>
+	    </tr>
+	    <tr>
+	        <th>Author</th>
+	        <td><?= $metadata['author'] ?></td>
+	    </tr>	    
+	    <?php
+	    if(is_array($metadata['raw_data']['user'])):
+	    if(array_key_exists('bio', $metadata['raw_data']['user'])):
+	    ?>
+	    <tr>
+	        <th>Biography</th>
+	        <td><?= $metadata['raw_data']['user']['bio'] ?></td>
+	    </tr>
+	    <?php
+	    endif;
+	    endif;
+	    if(array_key_exists('downloads', $metadata['raw_data'])):
+	    ?>
+	    <tr>
+	        <th>Downloads</th>
+	        <td><?= $metadata['raw_data']['downloads'] ?></td>
+	    </tr>
+	    <?php
+	    endif;
+	    if(array_key_exists('likes', $metadata['raw_data'])):
+	    ?>
+	    <tr>
+	        <th>Likes</th>
+	        <td><?= $metadata['raw_data']['likes'] ?></td>
+	    </tr>
+	    <?php
+	    endif;
+	    if(array_key_exists('description', $metadata['raw_data'])):
+	    ?>
+	    <tr>
+	        <th>Description</th>
+	        <td><?= $metadata['raw_data']['description'] ?><br/><?= $metadata['raw_data']['alt_description'] ?></td>
+	    </tr>
+	    <?php
+	    endif;
+	    ?>
+	    <tr>
+	        <th>Downloaded by</th>
+	        <td><?= $metadata->user->first_name .' '.$metadata->user->last_name ?></td>
+	    </tr>
+
+	    <tr>
+	        <th>Downloaded at</th>
+	        <td><?= date('d.m.Y H:i', strtotime($metadata['created_at'])) ?></td>
+	    </tr>
+	</tbody>
+</table>
+<?php
+else:
+?>
+<p><?= trans('snipi.uniquemediafinder::lang.no_metadata_stored_for_file') ?></p>
+<?php
+endif;
+
+if(array_key_exists('exif', $metadata['raw_data'])):
+?>
+<label><?= trans('snipi.uniquemediafinder::lang.exif_informations') ?></label>
+<table class="name-value-list">
+    <tbody>
+		<?php
+		foreach($metadata['raw_data']['exif'] as $key => $val):
+		if(!empty($val)):
+	    ?>
+	    <tr>
+	        <th><?= trans('snipi.uniquemediafinder::lang.exif.' . $key) ?></th>
+	        <td class="text-right"><?= $val ?></td>
+	    </tr>
+	    <?php
+	    endif;
+	    endforeach;
+		?>
+    </tbody>
+</table>
+<?php
+endif;
+
+?>

@@ -1,0 +1,11 @@
+<h3 class="section"><?= trans('snipi.uniquemediafinder::finder.providers') ?></h3>
+<ul class="nav nav-stacked selector-group">
+<?php
+foreach($this->getProviders() as $key => $provider) {
+	if($provider->configured()) {
+		echo '<li role="presentation"><a href="#" data-command="open-provider" data-provider="' . $key . '">
+			<i><img width="14" src="/plugins/snipi/uniquemediafinder/assets/img/' . $key .'.svg"></i>&nbsp;&nbsp;'. ucfirst($key) .'</a></li>';
+	}
+}
+?>
+</ul>

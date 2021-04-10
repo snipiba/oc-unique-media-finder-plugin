@@ -1,0 +1,92 @@
+<div
+    data-control="media-manager"
+    class="layout"
+    data-alias="<?= $this->alias ?>"
+    data-upload-handler="<?= $this->getEventHandler('onUpload') ?>"
+    data-delete-empty="<?= e(trans('backend::lang.media.delete_empty')) ?>"
+    data-delete-confirm="<?= e(trans('backend::lang.media.delete_confirm')) ?>"
+    data-move-empty="<?= e(trans('backend::lang.media.move_empty')) ?>"
+    data-select-single-image="<?= e(trans('backend::lang.media.select_single_image')) ?>"
+    data-selection-not-image="<?= e(trans('backend::lang.media.selection_not_image')) ?>"
+    data-bottom-toolbar="<?= $this->bottomToolbar ? 'true' : 'false' ?>"
+    data-crop-and-insert-button="<?= $this->cropAndInsertButton ? 'true' : 'false' ?>"
+    data-read-only="<?= $this->readOnly ? 'true' : 'false'; ?>"
+    tabindex="0"
+>
+    <script>
+        var __lang_searching_for = '<?= trans('snipi.uniquemediafinder::lang.searching_for') ?>';
+        var _lang_pic_downloaded = '<?= trans('snipi.uniquemediafinder::lang.pic_downloaded') ?>';
+        _load_aditional_info = <?= SNiPI\UniqueMediaFinder\Models\Settings::get('store_metadata') ? 'true' : 'false' ?>;
+    </script>
+    <?= $this->makePartial('toolbar') ?>
+
+    <?= (!$this->readOnly) ? $this->makePartial('upload-progress') : '' ?>
+
+    <div class="layout-row whiteboard">
+        <div class="layout">
+            <div class="layout-row">
+                <div class="layout-cell panel w-200 border-right" data-control="left-sidebar">
+                    <?= $this->makePartial('left-sidebar') ?>
+                </div>
+                <div class="layout-cell" id="media-provider">
+                	<div class="layout-row min-size">
+                        <?= $this->makePartial('provider-toolbar') ?>
+                    </div>
+                    <div class="layout-row min-size panel border-bottom no-padding bg-gray">
+                        <?= $this->makePartial('provider-searchbar') ?>
+                    </div>
+                    <div class="layout-row">                                        
+                        <div id="loader" class="loading-indicator-container">                            
+                            <div class="loading-indicator text-center p-t-lg p-b-lg  indicator-center">                                
+                                <span></span>
+                                <div>Please wait, loading in progress...</div>
+                            </div>                        
+                        </div>
+                        <div class="layout">
+                            <div id="provider-content" class="no-padding"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout-cell" id="main-content">
+                    <div class="layout">                        
+                        <div class="layout-row min-size">
+                            <?= $this->makePartial('folder-toolbar') ?>
+                        </div>
+                        <div class="layout-row">
+                            <!-- Main area -->
+                            <div class="layout">
+                                <div class="layout-row">
+                                    <div class="layout">
+                                        <!-- Main area - list -->
+                                        <div data-control="item-list">
+                                            <div class="control-scrollpad">
+                                                <div class="scroll-wrapper"> <!-- This element is required for the scrollpad control -->
+                                                    <div id="<?= $this->getId('item-list') ?>" >
+                                                        <?= $this->makePartial('item-list') ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="layout-cell w-300 panel border-left no-padding <?= !$sidebarVisible ? 'hide' : null ?>" data-control="preview-sidebar">
+                                            <!-- Right sidebar -->
+                                            <?= $this->makePartial('right-sidebar') ?>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="layout-row min-size hide" data-control="bottom-toolbar">
+                                    <?= $this->makePartial('bottom-toolbar') ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?= $this->makePartial('new-folder-form') ?>
+</div>

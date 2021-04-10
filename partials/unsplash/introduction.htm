@@ -1,0 +1,38 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<div class="row">
+    <div class="col-md-6">
+        <h3><?= trans('snipi.uniquemediafinder::unsplash.introduction.unsplash_title') ?></h3>
+        <p><?= trans('snipi.uniquemediafinder::unsplash.introduction.unsplash_about') ?></p>
+        <p><?= trans('snipi.uniquemediafinder::unsplash.introduction.unsplash_api_key') ?></p>
+    </div>
+    <div class="col-md-6">
+        <?php
+        $remains = Settings::get('unsplash_remain');
+        $limit = Settings::get('unsplash_limit');
+        if($remains < 25) {
+        	$class = 'warning';
+        } else if($remains < 10) {
+        	$class = 'danger';
+        } else {
+        	$class = 'info';
+        }
+        ?>
+        <div class="callout fade in callout-<?= $class ?>">
+            <button
+                type="button"
+                class="close"
+                data-dismiss="callout"
+                aria-hidden="true">&times;</button>
+            <div class="header">
+                <i class="icon-warning"></i>
+                <h3><?= trans('snipi.uniquemediafinder::lang.callouts.remaining_traffic') ?></h3>
+                <p><?= trans('snipi.uniquemediafinder::lang.callouts.traffic_status') ?></p>
+            </div>
+            <div class="content">
+                <p><?= trans_choice('snipi.uniquemediafinder::lang.callouts.remaining', $remains, ['remains' =>$remains, 'limit' => $limit]) ?></p>
+            </div>
+        </div>
+    </div>
+</div>

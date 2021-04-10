@@ -10,38 +10,31 @@
 			'title' => 'Unique media finder configuration',
 			'about' => 'This plugin allows users to search media files on various databases like Unsplash or Pexels.<br/>For search is used open API, then you need to setup some API keys to use API endpoints to search and download photos to your media library database stored in your local server.',
 			'title_support' => 'Support my work',
-			'support' => 'If you wish, you can provide some donation for my work on this plugin or on other plugins for OctoberCMS. For more info see my website <a href="https://www.snipi.sk?ref=uniquemediafinder" target="_blank">SNiPI.sk</a>.',
-			'unsplash_title' => 'Configure API settings for UNSPLASH',
-			'unsplash_about' => '<a href="https://unsplash.com/about" target="_blank">UNSPLASH</a> is an open source royalty free stock database where is over 2 milions photographies and high-resolution images, which is free to use.',
-			'unsplash_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://unsplash.com/oauth/applications/new" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.',
-			'pexels_title' => 'Configure API settings for PEXELS',
-			'pexels_about' => '<a href="https://www.pexels.com/about/" target="_blank">PEXELS</a> is a free photo gallery that provides royalty free stock photos.',
-			'pexels_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://www.pexels.com/api/" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.',
-			'pixabay_title' => 'Configure API settings for PIXABAY',
-			'pixabay_about' => '<a href="https://www.pixabay.com/about/" target="_blank">PEXELS</a> is a free photo gallery that provides royalty free stock photos.',
-			'pixabay_api_key' => 'For correct searching, you need to create an account and application, to obtain <a href="https://www.pixabay.com/api/" target="_blank">API key</a>. This plugin uses only READ ONLY mode, to browse whole database, then is not needed to use whole API.<br/>If you need step-by-step informations, please, visit my website.'
+			'support' => 'If you wish, you can provide some donation for my work on this plugin or on other plugins for OctoberCMS. For more info see my website <a href="https://www.snipi.sk?ref=uniquemediafinder" target="_blank">SNiPI.sk</a>.',			
+
+			'notifications_title' => 'Notification about reaching low limits on api endpoints.',
+			'notifications_about' => 'Each API endpoint has a different limitations and remaining free api requests. Get notification each time, when api rate goes low, and can probably disallow you from using search on some provider.'
 		],
 		'settings' => [
 			'tab_unsplash' => 'Unsplash API',
-			'unsplash_api_key' => 'API key',
-			'unsplash_api_key_comment' => 'Enter API key obtained in UNSPLASH page',
-			'unsplash_application_name' => 'Application name',
-			'unsplash_application_name_comment' => 'Name of your application created on unsplash.com page',
-			'unsplash_per_page' => 'Limit results per page',
-			'unsplash_upload_folder' => 'Directory to download',
-			'unsplash_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
 			'tab_pexels' => 'Pexels API',
-			'pexels_api_key' => 'API key',
-			'pexels_api_key_comment' => 'Enter API key obtained in PEXELS page',
-			'pexels_per_page' => 'Limit results per page',
-			'pexels_upload_folder' => 'Directory to download',
-			'pexels_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
+			'tab_notifications' => 'Notifications',
+			'tab_database' => 'Storage informations',
+			'tab_processing' => 'Processing images',
 			'tab_pixabay' => 'Pixabay API',
-			'pixabay_api_key' => 'API key',
-			'pixabay_api_key_comment' => 'Enter API key obtained in PEXELS page',
-			'pixabay_per_page' => 'Limit results per page',
-			'pixabay_upload_folder' => 'Directory to download',
-			'pixabay_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
+			'notify_low_rates' => 'Notify by e-mail when remaining counts are low',
+			'notify_email' => 'Email address to notify',
+			'notify_template' => 'Template to send',
+			'allow_postprocessing' => 'Enable image postprocessing',
+			'allow_postprocessing_comment' => 'When is enabled, you can configure how will be images processed after download.',
+			'use_database' => 'Use database storage',
+			'use_database_comment' => 'Use database storage for caching requests and responses',
+			'store_errors' => 'Log API errors',
+			'store_errors_comment' => 'Will you store all API errors, when you dont get any response?',
+			'store_search' => 'Store each search query',
+			'store_search_comment' => 'Store search queries, for create statistics of most used keywords',
+			'store_metadata' => 'Store metadata',
+			'store_metadata_comment' => 'Store all data for downloaded pictures, to allow media library load extended information about image'
 		],
 		'forms' => [
 			'search_for_photo_hint' => 'This keywords will be used for search on all configured api endpoints.',
@@ -51,7 +44,12 @@
 			'enter_keyword_hit_enter' => 'type keyword and hit enter to perform search'
  		],
 		'errors' => [
-			'no_search_query' => 'Please, provide correct search query. Empty string is not allowed.'
+			'no_search_query' => 'Please, provide correct search query. Empty string is not allowed.',
+			'configuration_warning' => 'Configuration needed',
+			'configuration_needs_attention' => 'Please, check errors bottom, to get this plugin work properly',
+			'configuration_provider_unsplash' => 'Unsplash provider is not configured. Please, provide API key (access key) otherwise this provider was not activated.',
+			'configuration_provider_pexels' => 'Pexels provider is not configured. Please, provide API key (access key) otherwise this provider was not activated.',
+			'configuration_provider_pixabay' => 'Pixabay provider is not configured. Please, provide API key (access key) otherwise this provider was not activated.'
 		],
 		'results' => [
 			'found' => '{1}One picture found for |{2,Inf}Found :count pictures for'
@@ -81,8 +79,7 @@
 			'royalty_free' => ' ~ royalty free photo stock bank.',
 			'provider_unsplash' => 'Unsplash.com',
 			'provider_pexels' => 'Pexels.com',
-			'provider_pixabay' => 'Pixabay.com',
-			'pixabay_provider_note' => 'Showing search results from PIXABAY stock photo databank.'
+			'provider_pixabay' => 'Pixabay.com'
 		],
 		'exif' => [
 			'make' => 'Camera manufacturer',
@@ -91,5 +88,30 @@
 			'aperture' => 'Aperture',
 			'focal_length' => 'Focal length',
 			'iso' => 'ISO'
-		]
+		],
+		'callouts' => [
+			'remaining_traffic' => 'Information about traffic and limits',
+			'traffic_status' => 'Did u know, how many request you can make?',
+			'remaining' => '{0}No remaining traffic left for this provider (:remains/:limit):limit.|{1}Last remaining request for this provider (:remains/:limit)|{2,Inf}:remains remaining request from :limit for this provider.'
+		],
+		'searching_for' => 'Searching for',
+		'processing' => [
+			'heading' => 'Post processing images after downloading',
+			'enabling_post_processing' => 'Because many of downloaded pictures are really large, then you will probably make some optimalization after downloading images. Here you can manage what to do, with any of downloaded picture and how this processing will be executed.',
+			'optimalization' => 'Optimalization can be achieved with resizing images, lowering image quality or converting to webp format. Please, be patient with optimalization, because <strong>this feature is still in progress</strong>.'
+		],
+		'status' => [
+			'all_ok' => 'Operational OK',
+			'warning_bellow_10' => 'Warning! Limit is below 10',
+			'warning_bellow_20' => 'Warnint! Limit is below 20',
+			'not_operational' => 'Not operational. Need wait to reset per hours or months.'
+		],
+		'database' => [
+			'heading' => 'Storing photo and provider informations',
+			'enable_storing' => 'When you enable storing informations from providers about photos and images, you can use it withou any aditional searching for informations.',
+			'how_it_works' => 'When picture was downloaded, this feature will save each information from provider, to allow you in future to use this informations, for ex. sourcing author, etc. When this feature is enabled, this plugin will load aditional informations for picture in medialibrary details panel.'
+		],
+		'metadata' => 'Unique metadata',
+		'exif_informations' => 'Exif informations for file',
+		'no_metadata_stored_for_file' => 'This file are not downloaded thru unique media finder plugin, then no metadata was stored.'
 	];

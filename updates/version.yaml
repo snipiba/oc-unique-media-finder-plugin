@@ -1,4 +1,4 @@
-1.0.0: !!!Initial plugin installation
+1.0.0: Initial plugin installation
 1.0.1: Updated missing versions file
 1.0.2: Updated slovak language
 1.0.3: Author code fix
@@ -10,7 +10,7 @@
   - updated language for flash messages
   - added try/catch for handling exceptions (rate limits, etc)
 1.1.0:
-  - !!!Breaking updates
+  - Breaking updates
   - Translated string to slovak
   - updated detail view of photography
   - added better pagination
@@ -26,4 +26,21 @@
   - added new provider / Pixabay
 1.2.1:
   - added notation to list of pixbay photos (requested for accept api full access)
-  - extended pixbay to option "allow full HD download"
+  - extended pixbay to option allow full HD download
+
+2.0.0: !!! Refactoring whole plugin - complete refactoring
+  - removed search button
+  - created search providers in left sidebar in media library
+  - fixed initialization when media library is called from RainLab.Pages or Blog in Popup
+  - updated folder structure for better handling providers
+  - created new features for searching with filters
+  - updated detail informations popup
+  - updated pagination
+  - updated first loading for latest / random pictures from providers (for inspiration)
+2.0.1:
+  - create_table_for_database_storage.php
+2.0.2: Created new features and widgets
+  - Added widget for showing provider limits
+  - Added widget for latest search queries
+2.0.3:
+  - create_table_for_search_logging.php
