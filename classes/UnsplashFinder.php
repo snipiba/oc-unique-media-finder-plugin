@@ -106,15 +106,17 @@ class UnsplashFinder implements FinderInterface {
 			if(!Storage::exists('media/' . Settings::get('unsplash_upload_folder'))) {
 				Storage::makeDirectory('media/' . Settings::get('unsplash_upload_folder'));
 			}
-			$file =Storage::put('media/' . Settings::get('unsplash_upload_folder') .'/unsplash_' . $photoIdentifier.'.jpg',
+			$filename = 'unsplash_' . $photoIdentifier.'.jpg';
+			$file =Storage::put('media/' . Settings::get('unsplash_upload_folder') .'/'.$filename,
 				$rawData->body
 			);
 
 			if($file) {
 				if(Settings::get('store_metadata')) {
 					$meta = new MetadataInformations;
-					$meta->filename = 'unsplash_' . $photoIdentifier . '.jpg';
+					$meta->filename = $filename;
 					$meta->raw_data = $rawPhotoData;
+					$meta->full_path = '/' . Settings::get('unsplash_upload_folder') .'/' .$filename;
 					$meta->author = $rawPhotoData->user->name;
 					$meta->provider = 'unsplash';
 					$meta->user_id = BackendAuth::getUser()->id;

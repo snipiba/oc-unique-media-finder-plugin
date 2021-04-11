@@ -107,6 +107,7 @@ class PixabayFinder implements FinderInterface {
 					$photoData['height'] = $photoData['imageHeight'];
 					$meta = new MetadataInformations;
 					$meta->filename = 'pixabay_' . $photoIdentifier . '.' . $pi['extension'];
+					$meta->full_path = '/' . Settings::get('pixabay_upload_folder') .'/' .$meta->filename;
 					$meta->raw_data = $photoData;
 					$meta->author = $photoData['user'];
 					$meta->provider = 'pixabay';
@@ -122,7 +123,14 @@ class PixabayFinder implements FinderInterface {
 	
 	public function loadRandom(): array
 	{
-		return [];
+		$data = Http::get(self::PIXABAY_API_ENDPOINT . '/?per_page=' . (Settings::get('pixabay_per_page') ?? 12) .'&order=latest&editor_choice=true&key=' . Settings::get('pixabay_api_key'));
+		$this->updateLimits($data->headers);
+		$photos = json_decode($data->body, true);
+		$returnData = $photos;
+		$returnData['results'] = $photos['hits'];
+		//unset($returnData['photos']);
+		return $returnData['hits'];
+		
 	}
 
 	public function updateLimits($headers) {

@@ -15,7 +15,8 @@
 >
     <script>
         var __lang_searching_for = '<?= trans('snipi.uniquemediafinder::lang.searching_for') ?>';
-        var _lang_pic_downloaded = '<?= trans('snipi.uniquemediafinder::lang.pic_downloaded') ?>';
+        var __lang_pic_downloaded = '<?= trans('snipi.uniquemediafinder::lang.flash.pic_downloaded') ?>';
+        var __lang_open_download_folder = '<?= trans('snipi.uniquemediafinder::lang.flash.open_download_folder') ?>';
         _load_aditional_info = <?= SNiPI\UniqueMediaFinder\Models\Settings::get('store_metadata') ? 'true' : 'false' ?>;
     </script>
     <?= $this->makePartial('toolbar') ?>

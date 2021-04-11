@@ -30,6 +30,21 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 		                <li data-color="#df55dd">Comments <span><?= $photo['comments'] ?></span></li>
 		            </ul>
 		        </div>
+		        <div class="scoreboard-item title-value">
+		        	<a class="btn btn-primary btn-lg"
+						data-request="onDownload"
+						data-request-data="{id: '<?= $photo['id'] ?>', provider: 'pixabay'}"
+						data-request-loading="#downloading"
+						data-load-indicator="Downloading"
+						data-request-success="photoDownloaded('<?= Settings::get('pixabay_upload_folder') ?>')"
+					><i class="icon-download"></i> Download</a>
+					<div class="loading-indicator-container bg-none transparent" id="downloading">
+					    <div class="loading-indicator size-small" style="background:transparent;">
+					        <span></span>
+					        <div>Downloading...</div>
+					    </div>
+					</div>
+				</div>
 		    </div>
 		</div>
 	</div>
@@ -38,39 +53,8 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 			<div id="image-preview" class="layout-cell panel no-padding">
 				<img src="<?= $photo['largeImageURL'] ?>" />
 			</div>
-			<div class="layout-cell border-left panel">
+			<div class="layout-cell border-left panel">				
 				<p><?= trans('snipi.uniquemediafinder::pixabay.data_information') ?></p>
-				<h4><?= trans('snipi.uniquemediafinder::finder.available_sources') ?></h4>
-				<div class="btn-group m-b-lg">
-					<a data-request="onResolutionDownload" data-request-data="{provider:'pixabay',id: '<?= $photo['id'] ?>', size: 'preview'}" class="btn btn-secondary">
-						<i class="icon-download"></i> Small (150ox)
-					</a>
-					<a data-request="onResolutionDownload" data-request-data="{provider:'pixabay',id: '<?= $photo['id'] ?>', size: 'webformat'}" class="btn btn-secondary">
-						<i class="icon-download"></i> Medium (640px)
-					</a>
-					<a data-request="onResolutionDownload" data-request-data="{provider:'pixabay',id: '<?= $photo['id'] ?>', size: 'largeImage'}" class="btn btn-secondary">
-						<i class="icon-download"></i> Large (1280px)
-					</a>
-				</div>
-					<?php 
-					if(Settings::get('pixabay_full_access_api')):
-					?>
-				<h4 class="m-t-md"><?= trans('snipi.uniquemediafinder::pixabay.available_for_full_api_access') ?></h4>
-				<div class="btn-group">
-					<a data-request="onResolutionDownload" data-request-data="{provider:'pixabay',id: '<?= $photo['id'] ?>', size: 'fullHD'}" class="btn btn-secondary">
-						<i class="icon-download"></i> FullHD (1920px)
-					</a>
-					<a data-request="onResolutionDownload" data-request-data="{provider:'pixabay',id: '<?= $photo['id'] ?>', size: 'image'}" class="btn btn-primary">
-						<i class="icon-download"></i> Original
-					</a>
-					<?php
-					else:
-					?>
-					<a href="https://pixabay.com/api/docs/" target="_blank" class="btn btn-default"><i class="icon-download"></i> Request full API</a>
-					<?php
-					endif;
-					?>
-				</div>
 				<div class="layout-row">
 					<div class="layout-cell panel no-padding pos-a" style="bottom: 20px;">
 						<p><img src="/plugins/snipi/uniquemediafinder/assets/img/logo.webp" height="40" alt="pixabay"/><br/><?= trans('snipi.uniquemediafinder::pixabay.api_usage_information') ?></p>
@@ -80,3 +64,4 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 		</div>
 	</div>
 </div>
+<script type="text/javascript">$('#downloading').hide();</script>

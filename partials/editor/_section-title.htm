@@ -1,5 +1,5 @@
 <script>
 	var current = $('#mediafinder-provider').html();
-	$('##mediafinder-provider span').remove();
+	$('#mediafinder-provider span').remove();
 	$('#mediafinder-provider').html(current + '<span> ~ <?= trans('snipi.uniquemediafinder::finder.titles.' . $title) ?></span>');
 </script>

@@ -44,3 +44,14 @@
   - Added widget for latest search queries
 2.0.3:
   - create_table_for_search_logging.php
+2.0.4:
+  - updated modals
+  - added download button to modal
+  - added pagination
+  - fixed switching between providers
+  - fixed issue when new search query was starting at last page where pagination stops
+2.0.5:
+  - added binding for deleting folder (to remove all pictures from metadata storage)
+  - added section with feedback form
+  - added "report bug"
+  - append_full_download_path_to_metadata.php

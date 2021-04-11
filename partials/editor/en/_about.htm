@@ -1,0 +1,90 @@
+
+<div class="layout">
+	<div class="layout-cell panel">
+		<h3>Idea behind plugin</h3>
+		<p>Everybody has a little struggle, when need a perfect photo for blogpost or article, right? Then, searching begins and we all need a free stock photos. And... Here it goes.</p>
+		<p>Main idea behind whole plugin - searching stock databanks for photos, right in OctoberCMS. One click for copy external image inside media library and ease of using new pic.</p>
+		<h3>Why these providers?</h3>
+		<p>Based on top free stock photobanks, i asume, that list of most common used databanks will work for each of us. Each databank provide lot of photos, illustrations or videos, then,
+			why make some limitations? Each databank has open API for using programatically, then why dont use it? Right?
+		</p>
+		<p><strong>Unsplash</strong> is one of common free stock databank, which not force users to embed any informations on site, but - of course - its welcome when author is sourced and has a credit for their work. Just, <a href="https://unsplash.com/license" target="_blank">read license informations</a> for using photos from Unsplash.com.
+		</p>
+		<p><strong>Pexels</strong> is a great platform that offers hand-picked royalty-free images under the Creative Commons Zero license agreement, also called CC0. This means that the images can be used for personal and business purposes without attribution, i.e. mentioning an author, etc. The great search function of the site also allows you to quickly find the desired image.</p>
+		<p><strong>Pixabay</strong> is really large database of images, vector graphics, and much more which can be filtered or sorted by orientation, media type, etc. Pixabay also offers royalty-free images & other content like videos, vector graphics, etc. under the Creative Commons CC0, so you can use it everywhere without any problems.</p>
+		<h3>Searching, downloading, metadata informations</h3>
+		<p>Because is wished to use minimum usage of API requests, this version uses Cache and call search on specific provider, instead of on all providers (like in version 1). This will affect usage of api limits, which will decrease. For better handling of API limits i decide, to store each information about searching and downloading, to provide future informations like statistics dashboards, etc.</p>
+		<p>Downloading was a quite easy and each picture can be stored in separated folder. Everything is under settings page for plugin. In this version i decide to store information about each downloaded photo, to get meta informations about author and source, which can help you to provide better image sourcing on your page. For this is created new content snippet.</p>
+		<h3>Frontend twig snippet</h3>
+		<p>When data is stored for downloaded pictures, you can use <strong>|mediainfo</strong> instead of <em>|media</em>. This will generate container with image and aditional "sourcing".</p>
+		<p>Snippet is, of course, configurable, then you can change if you wish showing "source" or "author" etc.</p>
+		<h3>Under the hood</h3>
+		<p>Because, you can still rename folders, files, or delete files or whole folders, there are a something under hood, which waits for this kind of changes. When you delete for example a whole "downloads" folder with whole content, then all metadata for each file under that folder needs to be removed. Likely, MediaLibrary provides events, but, sadly, withou list of affected files. But, nothing what cant be catched or resolved.</p>
+		<p>On upcomming update i will provide some "post processing" events, for optimalize downloaded files, then wish me luck guys.</p>
+
+	</div>
+	<div class="layout-cell w-sm border-left panel">
+		<h4>Screens</h4>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="w-full img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/main.jpg" alt="Main screen"/><br/><small>Main medialibrary screen with search providers.</small>
+		</div>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="w-full img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/photo_details.jpg" alt="Photo details"/><br/><small>Each provider contains different metadata.</small>
+		</div>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="w-full img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/snippet.jpg" alt="Snippet for frontend"/><br/><small>Frontend snippet is configurable.</small>
+		</div>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/metadata.jpg" alt="Photo metadata"/><br/><small>Downloaded photos has stored metadata.</small>
+		</div>
+	</div>
+	<div class="layout-cell w-sm border-left panel pos-r">
+		<h2>Plugin author</h2>
+		<img src="/plugins/snipi/uniquemediafinder/assets/img/author.jpeg" class="w-150 pull-right m-a-md">
+		<p><small>Meet author of this plugin.</small></p>
+
+		<p><strong>SNiPI</strong> is web developer based in Slovakia.</p>
+		<p>As a web developer i created plenty of websites, with small or larger funcionality. From my side o view, i think, this plugin will help each blogger to get perfect pictures easily without thinking, where to looking for.</p>
+		<p>I will appreciate each suggestion or feedback, then dont hesistate to submit any questions with this little form.</p>
+		<div data-request="onFeedback" data-request-update="ajax/feedback:'#feedback-form" id="feedback-form">
+			<div class="form-group">
+				<label class="control-label">Your name</label>
+				<input type="text" name="your_name" class="form-control">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Your email</label>
+				<input type="text" name="your_email" class="form-control">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Your feedback or question</label>
+				<textarea type="text" name="your_message" class="form-control"></textarea>
+			</div>
+			<button id="submitFeedback" class="btn btn-default btn-lg">Send feedback</button>
+		</div>
+	</div> 
+</div>
+<script>
+	$('#mediafinder-provider').html('<strong>About Unique Media Finder extension plugin for OctoberCMS</strong> by <a href="https://www.snipi.sk" target="_blank">SNiPI</a>.');
+	$('#submitFeedback').click(function(){
+		if(
+			$('input[name="your_name"]').val() != '' && $('input[name="your_email"]').val() != '' && $('textarea[name="your_message"]').val() != '') {
+
+				$.request('onFeedback',{
+					data: {
+						your_name: $('input[name="your_name"]').val(),
+						your_email: $('input[name="your_email"]').val(),
+						your_message: $('textarea[name="your_message"]').val(),
+					},
+					update: {
+						'ajax/feedback' : '#feedback-form'
+					},
+					loading: $('#feedback-loader')
+				});
+		} else {
+			$.oc.flashMsg({
+				'text' : 'All fields in feedback form are required.',
+				'class' : 'error'
+			});
+		}
+	})
+</script>

@@ -99,6 +99,7 @@ class PexelsFinder implements FinderInterface {
 					$photo['user'] = $photo['photographer'];
 					$meta = new MetadataInformations;
 					$meta->filename = 'pexels_' . $photoIdentifier . '.' . $pi['extension'];
+					$meta->full_path = '/' . Settings::get('pexels_upload_folder') .'/' .$meta->filename;
 					$meta->raw_data = $photo;
 					$meta->author = $photo['photographer'];
 					$meta->provider = 'pexels';

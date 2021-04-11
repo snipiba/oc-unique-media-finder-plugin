@@ -1,5 +1,4 @@
 <label><?= trans('snipi.uniquemediafinder::lang.metadata') ?></label>
-
 <?php
 if(!empty($metadata)):
 ?>
@@ -72,12 +71,6 @@ if(!empty($metadata)):
 	</tbody>
 </table>
 <?php
-else:
-?>
-<p><?= trans('snipi.uniquemediafinder::lang.no_metadata_stored_for_file') ?></p>
-<?php
-endif;
-
 if(array_key_exists('exif', $metadata['raw_data'])):
 ?>
 <label><?= trans('snipi.uniquemediafinder::lang.exif_informations') ?></label>
@@ -99,5 +92,14 @@ if(array_key_exists('exif', $metadata['raw_data'])):
 </table>
 <?php
 endif;
+else:
+?>
+<p><?= trans('snipi.uniquemediafinder::lang.no_metadata_stored_for_file') ?></p>
+<p><?= trans('snipi.uniquemediafinder::lang.will_add_some_metadata') ?></p>
+<p><a href="https://www.buymeacoffee.com/snipiba" target="_blank"><img width="160" src="https://www.snipi.sk/storage/app/media/bmc-full-logo-no-background.png" alt="Buymeacoffee.com"></a></p>
+<?php
+endif;
+
+
 
 ?>

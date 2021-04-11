@@ -1,3 +1,6 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
 <div class="photo-item">
 	<div class="info">
 		<div class="btn-group">
@@ -17,7 +20,7 @@
 				data-request="onDownload"
 				data-request-data="{id: '<?= $photo['id'] ?>', provider: 'pixabay'}"
 				data-request-loading="#loader"
-				data-success="photoDownloaded()"
+				data-request-success="photoDownloaded('<?= Settings::get('pixabay_upload_folder') ?>')"
 			><i class="icon-download"></i></a>
 		</div>
 	</div>

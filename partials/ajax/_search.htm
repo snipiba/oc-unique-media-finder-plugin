@@ -7,7 +7,11 @@ if(count($items) > 0) {
 		echo $this->makePartial($this->vars['provider'] .'/photo-item', ['photo' => $item]);	
 	}
 	echo '</div></div>';
+	echo $this->makePartial($this->vars['provider'].'/pagination');	
 } else {
 	echo $this->makePartial('editor/no-items');
 }
 ?>
+<script>
+	initPagination();
+</script>

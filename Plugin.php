@@ -10,6 +10,7 @@ use Illuminate\Filesystem\Filesystem;
 use Backend\Widgets\MediaManager;
 use System\Classes\PluginBase;
 use SNiPI\UniqueMediaFinder\Models\Settings;
+use SNiPI\UniqueMediaFinder\Models\MetadataInformations;
 use SNiPI\UniqueMediaFinder\Classes\UnsplashFinder;
 use SNiPI\UniqueMediaFinder\Classes\PexelsFinder;
 use SNiPI\UniqueMediaFinder\Classes\PixabayFinder;
@@ -86,6 +87,22 @@ class Plugin extends PluginBase
                 'context' => 'dashboard',
             ]
         ];
+    }
+
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'mediainfo' => [$this, 'getMediaInfo'],
+            ]
+        ];
+    }
+
+    public function getMediaInfo($value) {
+        $data = MetadataInformations::where('filename', basename($value))->first();
+        if($data) {
+            return $data;
+        }        
     }
 
 }

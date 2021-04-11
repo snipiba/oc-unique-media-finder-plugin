@@ -1,0 +1,7 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<div class="control-pagination">
+	<span class="page-iteration">Displayed records: <?=  (($this->vars['page'] ?? 0)-1)*Settings::get('unsplash_per_page') ?>-<?= (($this->vars['page']-1)*Settings::get('unsplash_per_page'))+Settings::get('unsplash_per_page') ?> of <?= $this->vars['data']['total'] ?></span>
+<a href="#" data-call="prevPage" class="page-back" title="Previous page"></a><a href="#" data-call="nexPage" class="page-next" title="Next page"></a>
+</div>

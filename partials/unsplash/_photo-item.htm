@@ -1,4 +1,5 @@
 <?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
 if(!is_null($photo['blur_hash'])):
 ?>
 <div class="photo-item" style="background-size:cover;background-repeat:no-repeat;background-color:<?= $photo['color'] ?>;background-image:url(<?= $this->vars['currentProvider']->blurHashBackground($photo['blur_hash']) ?>);">
@@ -27,7 +28,7 @@ endif;
 				data-request="onDownload"
 				data-request-data="{id: '<?= $photo['id'] ?>', provider: 'unsplash'}"
 				data-request-loading="#loader"
-				data-success="photoDownloaded()"
+				data-request-success="photoDownloaded('<?= Settings::get('unsplash_upload_folder') ?>')"
 			><i class="icon-download"></i></a>
 		</div>
 	</div>

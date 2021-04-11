@@ -60,7 +60,8 @@
 		],
 		'flash' => [
 			'pic_downloaded' => 'Picture was successfully downloaded to folder ',
-			'pic_error' => 'Unable to download picture.'
+			'pic_error' => 'Unable to download picture.',
+			'open_download_folder' => 'Will you open folder with downloaded picture?'
 		],
 		'photo' => [
 			'downloads' => 'Downloads',
@@ -113,5 +114,6 @@
 		],
 		'metadata' => 'Unique metadata',
 		'exif_informations' => 'Exif informations for file',
-		'no_metadata_stored_for_file' => 'This file are not downloaded thru unique media finder plugin, then no metadata was stored.'
+		'no_metadata_stored_for_file' => 'This file are not downloaded thru unique media finder plugin, then no metadata was stored.',
+		'will_add_some_metadata' => 'If you will to add some metadata for this file, you can install <strong>MediaMetadata</strong> plugin from SNiPI.'
 	];
