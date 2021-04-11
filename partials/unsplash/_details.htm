@@ -83,39 +83,6 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 		            <?php 
 		            endif;
 		            ?>
-		        <div class="control-tabs primary-tabs" data-control="tab">
-				    <ul class="nav nav-tabs">
-				        <li><a href="#primaryTabOne">Dump</a></li>
-				        <?php
-				        if($photo['related_collections']):
-				        ?>
-				        <li><a href="#primaryTabTwo">Kolekcie</a></li>
-				        <?php
-				        endif;
-				        ?>
-				        <li><a href="#primaryTabThree">Autor</a></li>
-				    </ul>
-				    <div class="tab-content">
-				        <div class="tab-pane">
-				            <?php dump($photo); ?>
-				        </div>
-				        <div class="tab-pane">
-				        	<div class="row">				        		
-				            <?php
-				            foreach($photo['related_collections']['results'] as $collection) {
-				            	echo $this->makePartial('unsplash/collection', ['data' => $collection]);
-				            }
-				            ?>
-				        	</div>
-				            <?php
-				            dump($photo['related_collections']);
-				            ?>
-				        </div>
-				        <div class="tab-pane">
-				            autor
-				        </div>
-				    </div>
-				</div>
 			</div>
 		</div>
 	</div>
