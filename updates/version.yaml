@@ -70,3 +70,5 @@
 2.0.11:
   - updated "about plugin"
   - added new screenshots 
+2.0.12:
+  - fixed pixabay download when not "FULL access" (missing configuration for largeImageURL instead of setting value)

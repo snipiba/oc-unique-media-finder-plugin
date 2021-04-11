@@ -91,7 +91,13 @@ class PixabayFinder implements FinderInterface {
 		if($photo) {
 
 			$photoData = $photo['hits'][0];
-			$pathToDownload = $photoData[Settings::get('pixabay_download_size') .'URL'];
+			if(Settings::get('pixabay_full_access_api')) {
+				$size = Settings::get('pixabay_download_size').'URL';
+			} else {
+				$size = 'largeImageURL';
+			}
+			Settings::get('pixabay_download_size') ?? 'largeImage' .'URL'
+			$pathToDownload = $photoData[$size];
 			
 			$rawData = Http::get($pathToDownload);
 			$pi = pathinfo($pathToDownload);
