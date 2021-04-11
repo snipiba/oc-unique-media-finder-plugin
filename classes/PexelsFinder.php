@@ -131,11 +131,11 @@ class PexelsFinder implements FinderInterface {
 	}
 
 	public function updateLimits($headers) {
-		if(array_key_exists('x-ratelimit-limit',$headers)) {
+		if(array_key_exists('X-Ratelimit-Limit',$headers)) {
 			$settings = Settings::instance();
-			$settings->pexels_limit = $headers['x-ratelimit-limit'];
-			$settings->pexels_remain = $headers['x-ratelimit-remaining'];
-			$settings->pexels_limit_reset = $headers['x-ratelimit-reset'];
+			$settings->pexels_limit = $headers['X-Ratelimit-Limit'];
+			$settings->pexels_remain = $headers['X-Ratelimit-Remaining'];
+			$settings->pexels_limit_reset = $headers['X-Ratelimit-Reset'];
 			$settings->save();
 		}
 	}

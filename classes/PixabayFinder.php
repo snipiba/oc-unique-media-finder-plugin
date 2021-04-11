@@ -143,11 +143,11 @@ class PixabayFinder implements FinderInterface {
 	}
 
 	public function updateLimits($headers) {
-		if(array_key_exists('x-ratelimit-limit',$headers)) {
+		if(array_key_exists('X-Ratelimit-Limit',$headers)) {
 			$settings = Settings::instance();
-			$settings->pixabay_limit = $headers['x-ratelimit-limit'];
-			$settings->pixabay_remain = $headers['x-ratelimit-remaining'];
-			$settings->pixabay_limit_reset = $headers['x-ratelimit-reset'];
+			$settings->pixabay_limit = $headers['X-Ratelimit-Limit'];
+			$settings->pixabay_remain = $headers['X-Ratelimit-Remaining'];
+			$settings->pixabay_limit_reset = $headers['X-Ratelimit-Reset'];
 			$settings->save();
 		}
 	}

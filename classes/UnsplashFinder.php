@@ -149,10 +149,10 @@ class UnsplashFinder implements FinderInterface {
 	}
 
 	protected function updateLimits($headers) {
-		if(array_key_exists('x-ratelimit-limit',$headers)) {
+		if(array_key_exists('X-Ratelimit-Limit',$headers)) {
 			$settings = Settings::instance();
-			$settings->unsplash_limit = $headers['x-ratelimit-limit'];
-			$settings->unsplash_remain = $headers['x-ratelimit-remaining'];
+			$settings->unsplash_limit = $headers['X-Ratelimit-Limit'];
+			$settings->unsplash_remain = $headers['X-Ratelimit-Remaining'];
 			$settings->save();
 		}
 	}
