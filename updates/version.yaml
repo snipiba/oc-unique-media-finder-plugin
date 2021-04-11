@@ -55,3 +55,5 @@
   - added section with feedback form
   - added "report bug"
   - append_full_download_path_to_metadata.php
+2.0.6:
+  - fix for missing unsplash x-ratelimit-limit
