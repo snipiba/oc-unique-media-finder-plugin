@@ -10,6 +10,12 @@ tabs:
         path: $/snipi/uniquemediafinder/partials/unsplash/introduction.htm
         tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
 
+    enable_unsplash:
+      span: full
+      type: checkbox
+      label: snipi.uniquemediafinder::unsplash.settings.enable_unsplash
+      commentAbove: snipi.uniquemediafinder::unsplash.settings.enable_unsplash_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
     unsplash_api_key:
       span: auto
       type: text
@@ -60,6 +66,13 @@ tabs:
         type: partial
         path: $/snipi/uniquemediafinder/partials/pexels/introduction.htm
         tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+
+    enable_pexels:
+      span: full
+      type: checkbox
+      label: snipi.uniquemediafinder::pexels.settings.enable_pexels
+      commentAbove: snipi.uniquemediafinder::pexels.settings.enable_pexels_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
     pexels_api_key:
       span: auto
       type: text
@@ -100,6 +113,13 @@ tabs:
         type: partial
         path: $/snipi/uniquemediafinder/partials/pixabay/introduction.htm
         tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
+
+    enable_pixabay:
+      span: full
+      type: checkbox
+      label: snipi.uniquemediafinder::pixabay.settings.enable_pixabay
+      commentAbove: snipi.uniquemediafinder::pixabay.settings.enable_pixabay_comment
+      tab: snipi.uniquemediafinder::lang.settings.tab_pixabay
     pixabay_api_key:
       span: auto
       type: text

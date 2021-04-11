@@ -23,6 +23,10 @@ class PexelsFinder implements FinderInterface {
 		return empty(Settings::get('pexels_api_key')) ? false : true;
 	}
 
+	public function isEnabled():bool {
+		return empty(Settings::get('enable_pexels')) ? false : true;
+	}
+
 	
 	/**
 	 * @param string $query search query string

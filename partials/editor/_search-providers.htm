@@ -3,11 +3,20 @@
 </h3>
 <ul class="nav nav-stacked selector-group">
 <?php
+$enabledProviders = 0;
 foreach($this->getProviders() as $key => $provider) {
-	if($provider->configured()) {
+	if($provider->configured() && $provider->isEnabled()) {
+	$enabledProviders++;
 		echo '<li role="presentation"><a href="#" data-command="open-provider" data-provider="' . $key . '">
-			<i><img width="14" src="/plugins/snipi/uniquemediafinder/assets/img/' . $key .'.svg"></i>&nbsp;&nbsp;'. ucfirst($key) .'</a></li>';
+			<i><img width="14" src="/plugins/snipi/uniquemediafinder/assets/img/' . $key .'.svg"></i>&nbsp;&nbsp;'. ucfirst($key) .'</a>
+
+		</li>';
+	} else {
+		echo '<li><a href="'. Backend::url('system/settings/update/snipi/uniquemediafinder/config') .'#primarytab-snipiuniquemediafinderlangsettingstab-'.$key.'"><i class="icon-cog"></i> Configure '.ucfirst($key).'</a></li>';
 	}
 }
+if($enabledProviders == 0) {
+	echo '<li><a href="'. Backend::url('system/settings/update/snipi/uniquemediafinder/config') .'"><i class="icon-exclamation-circle text-danger"></i> Configure providers</a></li>';
+} 
 ?>
 </ul>

@@ -23,6 +23,8 @@ return [
 		'unsplash_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
 		'unsplash_limit' => 'Unsplash LIMIT rate',
 		'unsplash_remain' => 'Unsplash remaining',
+		'enable_unsplash' => 'Enable this provider',
+		'enable_unsplash_comment' => 'Enable if you wish search with this provider.'
 	],
 	'forms' => [
 

@@ -25,6 +25,10 @@ class PixabayFinder implements FinderInterface {
 		return empty(Settings::get('pixabay_api_key')) ? false : true;
 	}
 
+	public function isEnabled():bool {
+		return empty(Settings::get('enable_pixabay')) ? false : true;
+	}
+
 	
 	/**
 	 * @param string $query search query string
@@ -95,8 +99,7 @@ class PixabayFinder implements FinderInterface {
 				$size = Settings::get('pixabay_download_size').'URL';
 			} else {
 				$size = 'largeImageURL';
-			}
-			Settings::get('pixabay_download_size') ?? 'largeImage' .'URL'
+			}			
 			$pathToDownload = $photoData[$size];
 			
 			$rawData = Http::get($pathToDownload);

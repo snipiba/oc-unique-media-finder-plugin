@@ -28,6 +28,10 @@ class UnsplashFinder implements FinderInterface {
 		return empty(Settings::get('unsplash_api_key')) ? false : true;
 	}
 
+	public function isEnabled():bool {
+		return empty(Settings::get('enable_unsplash')) ? false : true;
+	}
+
 	
 	/**
 	 * @param string $query search query string

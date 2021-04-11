@@ -32,7 +32,9 @@ return [
 		'webformat' => 'Medium',
 		'small' => 'Preview',
 		'pixabay_full_access_api' => 'Active FULL API Access?',
-		'pixabay_full_access_api_comment' => 'Check this, if you have activated FULL api access. This will allow you to download original file and other formats.'
+		'pixabay_full_access_api_comment' => 'Check this, if you have activated FULL api access. This will allow you to download original file and other formats.',
+		'enable_pixabay' => 'Enable this provider',
+		'enable_pixabay_comment' => 'Enable if you wish search with this provider.'
 	],
 	'forms' => [
 

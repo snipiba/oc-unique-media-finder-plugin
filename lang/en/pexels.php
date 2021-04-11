@@ -21,6 +21,8 @@ return [
 		'pexels_upload_folder_comment' => 'Select directory in media finder, where files will be downloaded. If folder not exists, it will be created.',
 		'pexels_limit' => 'Pexels LIMIT rate',
 		'pexels_remain' => 'Pexels remainig',
+		'enable_pexels' => 'Enable this provider',
+		'enable_pexels_comment' => 'Enable if you wish search with this provider.'
 
 	],
 	'forms' => [

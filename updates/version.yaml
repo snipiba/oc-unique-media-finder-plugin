@@ -72,3 +72,6 @@
   - added new screenshots 
 2.0.12:
   - fixed pixabay download when not "FULL access" (missing configuration for largeImageURL instead of setting value)
+2.0.13:
+  - pixabay misstypo fix
+  - added config for "enable/disable" provider
