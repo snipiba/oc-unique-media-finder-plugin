@@ -145,11 +145,12 @@ class UnsplashFinder implements FinderInterface {
 	}
 
 	protected function updateLimits($headers) {
-
-		$settings = Settings::instance();
-		$settings->unsplash_limit = $headers['x-ratelimit-limit'];
-		$settings->unsplash_remain = $headers['x-ratelimit-remaining'];
-		$settings->save();
+		if(array_key_exists('x-ratelimit-limit',$headers)) {
+			$settings = Settings::instance();
+			$settings->unsplash_limit = $headers['x-ratelimit-limit'];
+			$settings->unsplash_remain = $headers['x-ratelimit-remaining'];
+			$settings->save();
+		}
 	}
 
 	protected function getBlurHashImage($blurhash, $width = 350, $height = 200) {
