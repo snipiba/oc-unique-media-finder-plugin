@@ -1,0 +1,123 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<button style="outline:none;opacity: 1;position: absolute; top:-15px;right:-15px;font-size:30px;background: #fff;border-radius:50%;width: 50px;height:50px;text-align:center;line-height: 50px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+<div class="layout whiteboard">
+	<div class="layout-cell p-b-0 m-b-0 layout-row panel min-size border-bottom">
+		<div class="scoreboard">
+		    <div data-control="toolbar">
+		        <div class="scoreboard-item title-value">
+		            <h4><?= $photo['user']['username'] ?></h4>
+		            <p>
+		            	<img src="<?= $photo['user']['profile_image']['small'] ?>" />
+		            	<?= $photo['user']['name'] ?>
+		            </p>
+		        </div>
+		        <div class="scoreboard-item title-value">
+		            <h4><?= trans('snipi.uniquemediafinder::lang.photo.dimensions') ?></h4>
+		            <p><?= $this->vars['photo']['width'] ?> x <?= $this->vars['photo']['height'] ?>px</p>
+		        </div>
+		        <div class="scoreboard-item control-chart" data-control="chart-bar">
+		            <ul>
+		                <li data-color="#95b753">Views <span><?= $photo['views'] ?></span></li>
+		                <li data-color="#e5a91a">Downloads <span><?= $photo['downloads'] ?></span></li>
+		                <li data-color="#cc3300">Likes <span><?= $photo['likes'] ?></span></li>
+		            </ul>
+		        </div>
+		        <div class="scoreboard-item title-value">
+			        <a class="btn btn-primary btn-lg"
+						data-request="onDownload"
+						data-request-data="{id: '<?= $photo['id'] ?>', provider: 'unsplash'}"
+						data-request-loading="#downloading"
+						data-load-indicator="Downloading"
+						data-request-success="photoDownloaded('<?= Settings::get('unsplash_upload_folder') ?>')"
+					><i class="icon-download"></i> Download</a>
+					<div class="loading-indicator-container bg-none transparent" id="downloading">
+					    <div class="loading-indicator size-small" style="background:transparent;">
+					        <span></span>
+					        <div>Downloading...</div>
+					    </div>
+					</div>
+				</div>
+		    </div>
+		</div>
+	</div>
+	<div class="layout-row no-padding">
+		<div class="layout">
+			<?php
+			if(array_key_exists('blur_hash_image',$photo)):
+			?>
+			<script>
+				$('#image-preview').css("background-image", "url('data:image/png;base64,<?= $photo['blur_hash_image'] ?>')");
+			</script>
+			<?php
+			endif;
+			?>
+			<div id="image-preview" class="layout-cell panel no-padding" style="background-repeat: no-repeat;background-size:cover; background-color: <?= $photo['color'] ?>;">
+				<img src="<?= $photo['urls']['regular'] ?>" />
+			</div>
+			<div class="layout-cell border-left panel">
+				<?php
+		            if(!empty($photo['exif'])):
+		            ?>
+				<div class="control-status-list">
+				    <ul>
+		                <?php
+		                foreach($photo['exif'] as $key => $val):
+		                if(!empty($val)):
+		                ?>
+				        <li>
+				            <span class="status-icon"><i class="icon-camera"></i></span>
+				            <span class="status-text"><?= trans('snipi.uniquemediafinder::lang.exif.' . $key) ?></span>
+				            <span class="status-label link"><?= $val ?></span>
+				        </li>
+		                <?php
+		                endif;
+		                endforeach;
+		                ?>
+				    </ul>
+				</div>
+            
+		            <?php 
+		            endif;
+		            ?>
+		        <div class="control-tabs primary-tabs" data-control="tab">
+				    <ul class="nav nav-tabs">
+				        <li><a href="#primaryTabOne">Dump</a></li>
+				        <?php
+				        if($photo['related_collections']):
+				        ?>
+				        <li><a href="#primaryTabTwo">Kolekcie</a></li>
+				        <?php
+				        endif;
+				        ?>
+				        <li><a href="#primaryTabThree">Autor</a></li>
+				    </ul>
+				    <div class="tab-content">
+				        <div class="tab-pane">
+				            <?php dump($photo); ?>
+				        </div>
+				        <div class="tab-pane">
+				        	<div class="row">				        		
+				            <?php
+				            foreach($photo['related_collections']['results'] as $collection) {
+				            	echo $this->makePartial('unsplash/collection', ['data' => $collection]);
+				            }
+				            ?>
+				        	</div>
+				            <?php
+				            dump($photo['related_collections']);
+				            ?>
+				        </div>
+				        <div class="tab-pane">
+				            autor
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">$('#downloading').hide();</script>

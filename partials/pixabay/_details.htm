@@ -1,0 +1,67 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<button style="outline:none;opacity: 1;position: absolute; top:-15px;right:-15px;font-size:30px;background: #fff;border-radius:50%;width: 50px;height:50px;text-align:center;line-height: 50px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+<div class="layout whiteboard">
+	<div class="layout-cell p-b-0 m-b-0 layout-row panel min-size border-bottom">
+		<div class="scoreboard">
+		    <div data-control="toolbar">
+		        <div class="scoreboard-item title-value">
+		            <h4>Author</h4>
+		            <p><img src="<?= $photo['userImageURL'] ?>" width="30">
+		            <?= $photo['user'] ?></p>
+		        </div>
+		        <div class="scoreboard-item title-value">
+		            <h4><?= trans('snipi.uniquemediafinder::lang.photo.dimensions') ?></h4>
+		            <p><?= $photo['imageWidth'] ?> x <?= $photo['imageHeight'] ?>px</p>
+		        </div>
+
+		        <div class="scoreboard-item control-chart" data-control="chart-bar">
+		            <ul>
+		                <li data-color="#95b753">Views <span><?= $photo['views'] ?></span></li>
+		                <li data-color="#e5a91a">Downloads <span><?= $photo['downloads'] ?></span></li>
+		            </ul>
+		        </div>
+		        <div class="scoreboard-item control-chart" data-control="chart-bar">
+		            <ul>
+		                <li data-color="#cc3300">Likes <span><?= $photo['likes'] ?></span></li>
+		                <li data-color="#df55dd">Comments <span><?= $photo['comments'] ?></span></li>
+		            </ul>
+		        </div>
+		        <div class="scoreboard-item title-value">
+		        	<a class="btn btn-primary btn-lg"
+						data-request="onDownload"
+						data-request-data="{id: '<?= $photo['id'] ?>', provider: 'pixabay'}"
+						data-request-loading="#downloading"
+						data-load-indicator="Downloading"
+						data-request-success="photoDownloaded('<?= Settings::get('pixabay_upload_folder') ?>')"
+					><i class="icon-download"></i> Download</a>
+					<div class="loading-indicator-container bg-none transparent" id="downloading">
+					    <div class="loading-indicator size-small" style="background:transparent;">
+					        <span></span>
+					        <div>Downloading...</div>
+					    </div>
+					</div>
+				</div>
+		    </div>
+		</div>
+	</div>
+	<div class="layout-row no-padding">
+		<div class="layout">
+			<div id="image-preview" class="layout-cell panel no-padding">
+				<img src="<?= $photo['largeImageURL'] ?>" />
+			</div>
+			<div class="layout-cell border-left panel">				
+				<p><?= trans('snipi.uniquemediafinder::pixabay.data_information') ?></p>
+				<div class="layout-row">
+					<div class="layout-cell panel no-padding pos-a" style="bottom: 20px;">
+						<p><img src="/plugins/snipi/uniquemediafinder/assets/img/logo.webp" height="40" alt="pixabay"/><br/><?= trans('snipi.uniquemediafinder::pixabay.api_usage_information') ?></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">$('#downloading').hide();</script>

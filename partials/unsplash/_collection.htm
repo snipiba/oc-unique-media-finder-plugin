@@ -1,0 +1,15 @@
+<div class="collection">
+	<div class="collection-cover" data-bgsrc="<?= $data['cover_photo']['urls']['small'] ?>">
+		<div class="collection-title">
+			<h4><?= $data['title'] ?></h4>
+		</div>
+	</div>
+	<div class="collection-previews">
+		<?php
+		foreach($data['preview_photos'] as $photo) {
+			//echo $this->makePartial('unsplash/photo-item', ['photo' => $photo]);			
+		}
+		?>
+	</div>
+</div>
+

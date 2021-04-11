@@ -1,0 +1,13 @@
+<?php
+if(count($items) > 0) {
+	echo '<div class="layout-row panel m-a-0">';
+	echo $this->makePartial('editor/section-title', ['title' => 'random_photos']);
+	echo '<div class="items">';
+	foreach($items as $item) {
+		echo $this->makePartial($this->vars['provider'] .'/photo-item', ['photo' => $item]);	
+	}
+	echo '</div></div>';
+} else {
+	echo $this->makePartial('editor/no-items');
+}
+?>

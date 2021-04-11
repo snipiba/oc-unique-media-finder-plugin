@@ -1,0 +1,66 @@
+<div class="report-widget">
+    <h3>Limits and rates for search providers</h3>
+
+    <?php if (!isset($error)): 
+
+    if(!empty($providers)):
+    ?>
+    <div class="table-container">
+        <table class="table data table-striped" data-provides="rowlink">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><span>Provider</span></th>
+                    <th><span>Remaining</span></th>
+                    <th><span>Limit</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($providers as $key => $provider):
+            ?>
+                <tr>
+                    <td>
+                        <?php
+                        $remains = $provider->getRemainig();
+                        if($remains < 20 && $remains > 9) {
+                            $class= 'warning text-warning';
+                            $icon = 'exclamation-circle';
+                            $tooltip = trans('snipi.uniquemediafinder::lang.status.warning_below_20');
+                        } else if($remains < 10 && $remains > 0) {                            
+                            $class= 'danger text-danger';
+                            $icon = 'exclamation-triangle';
+                            $tooltip = trans('snipi.uniquemediafinder::lang.status.warning_below_10');
+                        } else if($remains < 1) {
+                            $icon = 'minus-circle';
+                            $class = 'danger text-danger';
+                            $tooltip = trans('snipi.uniquemediafinder::lang.status.not_oprational');
+                        } else {
+                            $icon = 'check';
+                            $tooltip = trans('snipi.uniquemediafinder::lang.status.all_ok');
+                            $class = 'success text-success';
+                        }
+                        ?>
+                        <span class="status-icon <?= $class ?>" data-placement="right" data-toggle="tooltip" title="<?= $tooltip ?>"><i class="icon-<?= $icon ?>"></i></span>
+                    </td>
+                    <td><?= ucfirst($key) ?></td>
+                    <td><?= $remains ?></td>
+                    <td>
+                        <?= $provider->getLimit() ?>
+                    </td>
+                </tr>
+            <?php
+            endforeach;
+            ?>
+            </tbody>
+        </table>
+    </div> 
+    <?php
+    endif;
+    ?>
+
+    <?php else: ?>
+        <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+
+</div>

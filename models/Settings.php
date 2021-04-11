@@ -2,6 +2,7 @@
 namespace SNiPI\UniqueMediaFinder\Models;
 
 use October\Rain\Database\Model;
+use System\Models\MailTemplate;
 
 /**
  * Google Analytics settings model
@@ -35,5 +36,10 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->per_page = 20;
+    }
+
+    public function getNotifyTemplateOptions() {        
+        $templates = MailTemplate::where('code','like','snipi.uniquemediafinder%')->get();
+        return $templates->lists('subject','id');
     }
 }

@@ -1,0 +1,28 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+?>
+<div class="photo-item" style="background-color:<?= $photo['avg_color'] ?>;">
+	<div class="info">
+		<div class="btn-group">
+			<a
+		    data-handler="onShowDetails"
+		    data-control="popup"
+		    data-size="adaptive adaptive-height"
+		    data-update="pexels/details: '#provider-details"
+		    data-request-data="{id: '<?= $photo['id'] ?>', provider: 'pexels'}"
+		    href="javascript:;"
+		    class="btn btn-primary"
+		    data-request-success="showDetails()"
+		    >
+				<i class="icon-eye"></i>
+			</a>
+			<a class="btn btn-primary"
+				data-request="onDownload"
+				data-request-data="{id: '<?= $photo['id'] ?>', provider: 'pexels'}"
+				data-request-loading="#loader"
+				data-request-success="photoDownloaded('<?= Settings::get('pexels_upload_folder') ?>')"
+			><i class="icon-download"></i></a>
+		</div>
+	</div>
+	<img src="<?= $photo['src']['large'] ?>"/>
+</div>

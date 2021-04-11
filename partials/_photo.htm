@@ -11,21 +11,8 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 				<img src="<?= $this->vars['path'] ?>" style="max-width: 100%;"/>
 			</div>
 			<div class="layout-cell panel border-left">
-				<?php
-				Switch($this->vars['type']) {
-
-					case 'unsplash':
-					echo $this->makePartial('unsplash_details');
-					break;
-
-					case 'pexels':
-					echo $this->makePartial('pexels_details');
-					break;
-
-					case 'pixabay':
-					echo $this->makePartial('pixabay_details');
-					break;
-				}
+				<?php		
+					echo $this->makePartial($this->vars['type'].'_details');
 				?>			
 			</div>
 			

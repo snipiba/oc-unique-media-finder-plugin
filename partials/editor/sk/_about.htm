@@ -1,0 +1,81 @@
+
+<div class="layout">
+	<div class="layout-cell panel">
+		<h3>Ako sa zrodil nápad na tento plugin?</h3>
+		<p>Každý z nás, keď píše nejaký článok, určite potrebuje mať pekný obrázok. Takže začína hľadanie a sťahovanie obrázkov, ktoré potom musíme zasa nahrávať a pritom to môže byť aj jednoduhšie. A tak sme tu.</p>
+		<p>Hlavným nápadom bolo, umožniť prehľadávať databanky fotiek a stiahnuť zvolenú fotku priamo do knižnice fotiek v projekte, kde ho už potom vieme priamo použiť.</p>
+		<h3>Vyhľadávanie a ukladanie metadát</h3>
+		<p>Aj keď zvolené databanky nevyžadujú striktné zdrojovanie autora či zdroja, je dobré, ak tieto informácie máte stále po ruke. Keďže si pri stiahnutí viacerých fotiek asi nebudete pamätať, kde ste ich zobrali, rozhodol som sa, že umožním pluginu pri stiahnutí fotografií, uloženie metadát, ktoré k fotke patria, takže sa uložia aj informácie o autorovi, rozmeroch a zdroji, odkiaľ fotografia pochádza.</p>
+		
+		<h3>Snippet pre frontend</h3>
+		<p>Aby bolo jednoduhšie zobrazovanie autora, zdroju a tak podobne, vyrobil som k pluginu aj snippet, ktorý je plne konfigurovateľný a teda sa možete rozhodnúť, či chcete zobraziť len meno autora, alebo aj web odkiaľ je fotografia stiahnutá a tak podobne. Verím, že to pomôže, keďže nemusíte používať |media helper, ale miesto toho použijete |mediainfo.</p>
+		<h3>Pod kapotou</h3>
+		<p>Vzhľadom na fakt, že sa ukladajú k fotografiám aj metadáta, musel som v pozadí vyriešiť aj zmeny, ktoré sa dajú v knižnici robiť. Takže ak sa rozhodnete premenovať adresár, alebo súbor, vôbec to nevadí, pretože som na to pripravený a zároveň sa všetko potrebné aktualizuje aj v tabuľke pre metadata.</p>
+		<p>V blízkej budúcnosti bude v rámci aktualizácie pridaná aj forma postprocessingu súborov, aby sa dali veľmi veľké súbory optimalizovať do požadovaných rozmerov a tak podobne.</p>
+
+	</div>
+	<div class="layout-cell w-sm border-left panel">
+		<h4>Náhľady</h4>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="w-full img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/main.jpg" alt="Main screen"/><br/><small>Hlavná obrazovka knižnice s providermi.</small>
+		</div>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="w-full img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/photo_details.jpg" alt="Photo details"/><br/><small>Každý provider ponúka iné metadata.</small>
+		</div>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="w-full img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/snippet.jpg" alt="Snippet for frontend"/><br/><small>Snippet je konfigurovateľný.</small>
+		</div>
+		<div class="text-center border-bottom m-b-sm panel layout-row">
+			<img class="img-thumb img" src="/plugins/snipi/uniquemediafinder/assets/img/screens/metadata.jpg" alt="Photo metadata"/><br/><small>Ukladané metadata.</small>
+		</div>
+	</div>
+	<div class="layout-cell w-sm border-left panel pos-r">
+		<h2>Autor pluginu</h2>
+		<img src="/plugins/snipi/uniquemediafinder/assets/img/author.jpeg" class="w-150 pull-right m-a-md">
+		<p><small>Spoznajte autora tohto pluginu.</small></p>
+
+		<p><strong>SNiPI</strong> je webdeveloper zo Slovenska.</p>
+		<p>Ako webdeveloper som už spolupracoval a vytvoril množstvo menších i väčších stránok či portálov. Z môjho uhľa pohľadu tento plugin pomôže každému blogerovi, alebo autorovi článokv, aby sa vedel dostať k pekným obrázok čo najrýchlejšie a najjednoduhšie.</p>
+		<p>Určite sa nehanbite a pošlite mi pár riadkov, ako sa vám tento plugin páčil, alebo ak máte nejaké nápady.</p>
+		<div data-request="onFeedback" data-request-update="ajax/feedback:'#feedback-form" id="feedback-form">
+			<div class="form-group">
+				<label class="control-label">Vaše meno</label>
+				<input type="text" name="your_name" class="form-control">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Kontaktný e-mail</label>
+				<input type="text" name="your_email" class="form-control">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Vaša správa alebo otázka</label>
+				<textarea type="text" name="your_message" class="form-control"></textarea>
+			</div>
+			<button id="submitFeedback" class="btn btn-default btn-lg">Odoslať dotaz</button>
+		</div>
+	</div> 
+</div>
+<script>
+	$('#mediafinder-provider').html('<strong>O rozšírení multimediálnej knižnice - Unique Media Finder extension plugin pre OctoberCMS</strong> od <a href="https://www.snipi.sk" target="_blank">SNiPI</a>.');
+	$('#submitFeedback').click(function(){
+		if(
+			$('input[name="your_name"]').val() != '' && $('input[name="your_email"]').val() != '' && $('textarea[name="your_message"]').val() != '') {
+
+				$.request('onFeedback',{
+					data: {
+						your_name: $('input[name="your_name"]').val(),
+						your_email: $('input[name="your_email"]').val(),
+						your_message: $('textarea[name="your_message"]').val(),
+					},
+					update: {
+						'ajax/feedback' : '#feedback-form'
+					},
+					loading: $('#feedback-loader')
+				});
+		} else {
+			$.oc.flashMsg({
+				'text' : 'Všetky polia sú povinné.',
+				'class' : 'error'
+			});
+		}
+	})
+</script>

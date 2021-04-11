@@ -1,0 +1,36 @@
+<?php
+use SNiPI\UniqueMediaFinder\Models\Settings;
+if(!is_null($photo['blur_hash'])):
+?>
+<div class="photo-item" style="background-size:cover;background-repeat:no-repeat;background-color:<?= $photo['color'] ?>;background-image:url(<?= $this->vars['currentProvider']->blurHashBackground($photo['blur_hash']) ?>);">
+<?php
+else:
+?>
+<div class="photo-item" style="background-color:<?= $photo['color'] ?>;">
+<?php
+endif;
+?>
+	<div class="info">
+		<div class="btn-group">
+			<a
+		    data-handler="onShowDetails"
+		    data-control="popup"
+		    data-size="adaptive adaptive-height"
+		    data-update="unsplash/details: '#provider-details"
+		    data-request-data="{id: '<?= $photo['id'] ?>', provider: 'unsplash'}"
+		    href="javascript:;"
+		    class="btn btn-primary"
+		    data-request-success="showDetails()"
+		    >
+				<i class="icon-eye"></i>
+			</a>
+			<a class="btn btn-primary"
+				data-request="onDownload"
+				data-request-data="{id: '<?= $photo['id'] ?>', provider: 'unsplash'}"
+				data-request-loading="#loader"
+				data-request-success="photoDownloaded('<?= Settings::get('unsplash_upload_folder') ?>')"
+			><i class="icon-download"></i></a>
+		</div>
+	</div>
+	<img src="<?= $photo['urls']['raw'] ?>?w=250&h=250"/>
+</div>
