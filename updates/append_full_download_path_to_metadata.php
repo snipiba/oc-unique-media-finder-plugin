@@ -19,7 +19,7 @@ class AddFullPathToMetadataTable extends Migration
     public function down()
 	{
 	    Schema::table('snipi_uniquemediafinder_providers_informations', function($table){
-            $table->dropColumnIfExists('full_path');
+            $table->dropColumn('full_path');
         });
 	} 
 
