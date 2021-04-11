@@ -4,6 +4,7 @@
 		'plugin' => [
 			'plugin_name' => 'Unique media finder',
 			'plugin_description' => 'Media finder extension for searching images on most free to use stock galleries like Unsplash and Pexels.',
+			'plugin_desc' => 'Media finder extension for searching images on most free to use stock galleries like Unsplash and Pexels.',
 			'plugin_desc_settings' => 'Search stock galleries in ease.'
 		],
 		'component' => [

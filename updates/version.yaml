@@ -64,3 +64,6 @@
   - fixed mail layout for notification
 2.0.9:
   - added component for snippet / Media Info with metadata
+2.0.10
+  - updated readme.md to reflect v.2
+  - fixed lang for plugin description

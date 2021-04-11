@@ -80,6 +80,12 @@ class Plugin extends PluginBase
             'SNiPI\UniqueMediaFinder\Components\MediaInfo' => 'mediainfo'
         ];
     }
+
+    public function registerComponents() {
+        return [
+            'SNiPI\UniqueMediaFinder\Components\MediaInfo' => 'mediainfo'
+        ];   
+    }
     
     public function registerReportWidgets()
     {
