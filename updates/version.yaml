@@ -77,3 +77,5 @@
   - added config for "enable/disable" provider
 2.0.14:
   - fixed X-Ratelimit-Limit headers
+2.0.15:
+  - pixabay X-RateLimit-Limit headers fix (strange when pexels and unsplash has Ratelimit and Pixabay RateLimit)
