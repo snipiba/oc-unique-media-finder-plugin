@@ -57,3 +57,5 @@
   - append_full_download_path_to_metadata.php
 2.0.6:
   - fix for missing unsplash x-ratelimit-limit
+2.0.7
+  - fix on migration file, blocking uninstalling plugin
