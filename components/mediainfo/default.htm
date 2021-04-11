@@ -1,0 +1,70 @@
+{% set metadata = __SELF__.property('file_path')|mediainfo %}
+{% if __SELF__.property('nostyle') != 1 %}
+<style>
+	.mediainfo-container,.mediainfo-content {position:relative;}
+	.mediainfo-content .metadata-source {
+		position: absolute;
+		bottom:0;
+		left:0;
+		background: rgba(255,255,255,.7);
+		font-size: 11px;
+		right: 0;
+		padding: 8px 15px;
+		display: flex;
+		flex-direction: row;
+	}
+	.mediainfo-content .metadata-source div {
+		padding: 0 4px;
+	}
+	.metadata-source strong {
+		font-family: normal;
+		display:block;
+		text-transform: uppercase;
+	}
+	.mediainfo-provider {
+		text-transform: capitalize;
+	}
+	.mediainfo-author {
+		text-transform: uppercase;
+		font-weight: bold;
+
+	}
+</style>
+{% endif %}
+<div class="mediainfo-container {{ __SELF__.property('cssClasses') }}">
+    <div class="mediainfo-content">
+        <img src="{{ __SELF__.property('file_path') | media }}" alt="{{ metadata.title }}" class="img img-thumbnail"/>
+        {% if metadata %}
+        {% if __SELF__.property('show_author') or __SELF__.property('show_provider') %}
+	    <div class="metadata-source">
+	    	<strong>{{ __SELF__.property('source_label') }}</strong>
+		    {% if __SELF__.property('show_author') %}
+		    <div class="mediainfo-author">
+		    	{% if(metadata.provider == 'unsplash') %}
+		    	<a href="{{ metadata.raw_data.user.links.html }}" target="_blank">{{ metadata.raw_data.user.name }}</a>
+		    	{% elseif (metadata.provider == 'pexels') %}
+				<a href="{{ metadata.raw_data.photographer_url }}" target="_blank">{{ metadata.author }}</a>
+		    	{% else %}
+		    	<a href="{{ metadata.raw_data.pageURL }}" target="_blank">{{ metadata.raw_data.user }}</a>
+		    	{% endif %}
+		    </div>
+		    {% endif %}
+		    {% if __SELF__.property('show_provider') %}
+		    <div class="mediainfo-provider">
+		    	{% if __SELF__.property('show_author') and __SELF__.property('show_provider') %}
+		    	{{ __SELF__.property('source_join') }}
+		    	{% endif %}
+		    	{% if(metadata.provider == 'unsplash') %}
+		    	<a href="{{ metadata.raw_data.links.html }}" target="_blank">{{ metadata.provider }}</a>
+		    	{% elseif (metadata.provider == 'pexels') %}
+		    	<a href="{{ metadata.raw_data.url }}" target="_blank">{{ metadata.provider }}</a>
+		    	{% else %}
+		    	<a href="{{ metadata.raw_data.pageURL }}" target="_blank">{{ metadata.provider }}</a>
+		    	{% endif %}
+		    </div>
+		    {% endif %}
+		</div>
+	    {% endif %}
+	    {% endif %}
+    </div>
+</div>
