@@ -1,0 +1,66 @@
+{% set metadata = file_path|mediainfo %}
+{% if nostyle %}
+<style>
+	.mediainfo-container,.mediainfo-content {position:relative;}
+	.mediainfo-content .metadata-source {
+		position: absolute;
+		bottom:0;
+		left:0;
+		background: rgba(255,255,255,.7);
+		font-size: 11px;
+		right: 0;
+		padding: 8px 15px;
+		display: flex;
+		flex-direction: row;
+	}
+	.mediainfo-content .metadata-source div {
+		padding: 0 4px;
+	}
+	.metadata-source strong {
+		font-family: normal;
+		display:block;
+		text-transform: uppercase;
+	}
+	.mediainfo-provider {
+		text-transform: capitalize;
+	}
+	.mediainfo-author {
+		text-transform: uppercase;
+		font-weight: bold;
+
+	}
+</style>
+{% endif %}
+<div class="mediainfo-container {{ cssClasses }}">
+    <div class="mediainfo-content">
+        <img src="{{ file_path | media }}" alt="{{ metadata.title }}" class="img img-thumbnail"/>
+        {% if show_author or show_provider %}
+	    <div class="metadata-source">
+	    	<strong>{{ source_label }}</strong>
+		    {% if show_author %}
+		    <div class="mediainfo-author">
+		    	{% if(metadata.provider == 'unsplash') %}
+		    	<a href="{{ metadata.raw_data.user.links.html }}" target="_blank">{{ metadata.raw_data.user.name }}</a>
+		    	{% elseif (metadata.provider == 'pexels') %}
+				<a href="{{ metadata.raw_data.photographer_url }}" target="_blank">{{ metadata.author }}</a>
+		    	{% else %}
+		    	<a href="{{ metadata.raw_data.pageURL }}" target="_blank">{{ metadata.raw_data.user }}</a>
+		    	{% endif %}
+		    </div>
+		    {% endif %}
+		    {% if show_provider %}
+		    <div class="mediainfo-provider">
+		    	{{ source_join }}
+		    	{% if(metadata.provider == 'unsplash') %}
+		    	<a href="{{ metadata.raw_data.links.html }}" target="_blank">{{ metadata.provider }}</a>
+		    	{% elseif (metadata.provider == 'pexels') %}
+		    	<a href="{{ metadata.raw_data.url }}" target="_blank">{{ metadata.provider }}</a>
+		    	{% else %}
+		    	<a href="{{ metadata.raw_data.pageURL }}" target="_blank">{{ metadata.provider }}</a>
+		    	{% endif %}
+		    </div>
+		    {% endif %}
+		</div>
+	    {% endif %}
+    </div>
+</div>

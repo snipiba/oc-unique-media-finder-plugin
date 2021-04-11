@@ -6,6 +6,24 @@
 			'plugin_description' => 'Media finder extension for searching images on most free to use stock galleries like Unsplash and Pexels.',
 			'plugin_desc_settings' => 'Search stock galleries in ease.'
 		],
+		'component' => [
+			'file_path' => 'File path',
+			'file_path_description' => 'Path to file in media library',
+			'source_label' => 'Label',
+			'source_label_description' => 'Label before author and source',
+			'source_join' => 'Joiner',
+			'source_join_description' => 'Join string between author and provider',
+			'show_author' => 'Show author',
+			'show_author_description' => 'Show name of author',
+			'show_provider' => 'Show source',
+			'show_provider_description' => 'Show provider source',
+			'nostyle' => 'Without styles',
+			'nostyle_description' => 'Dont use css styles',
+			'cssClasses' => 'CSS classes',
+			'cssClasses_description' => 'Use css classes for container',
+			'name' => 'Media file',
+			'description' => 'Showing media with stored metadata.'
+		],
 		'introduction' => [
 			'title' => 'Unique media finder configuration',
 			'about' => 'This plugin allows users to search media files on various databases like Unsplash or Pexels.<br/>For search is used open API, then you need to setup some API keys to use API endpoints to search and download photos to your media library database stored in your local server.',

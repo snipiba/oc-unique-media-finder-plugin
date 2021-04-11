@@ -74,6 +74,12 @@ class Plugin extends PluginBase
 
         
     }
+
+    public function registerPageSnippets() {
+        return [
+            'SNiPI\UniqueMediaFinder\Components\MediaInfo' => 'mediainfo'
+        ];
+    }
     
     public function registerReportWidgets()
     {
