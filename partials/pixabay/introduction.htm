@@ -9,7 +9,7 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
     </div>
     <div class="col-md-6">
         <?php
-        $remainsPixabay = Settings::get('pixabay_remain');
+        $remainsPixabay = intval(Settings::get('pixabay_remain')) ?? 0;
         if($remainsPixabay < 15) {
         	$class = 'warning';
         } else if($remainsPixabay < 10) {
@@ -30,7 +30,7 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
                 <p><?= trans('snipi.uniquemediafinder::lang.callouts.traffic_status') ?></p>
             </div>
             <div class="content">
-                <p><?= trans_choice('snipi.uniquemediafinder::lang.callouts.remaining', $remainsPixabay, ['remains' => $remainsPixabay, 'limit' => Settings::get('pixabay_limit')]) ?></p>
+                <p><?= trans_choice('snipi.uniquemediafinder::lang.callouts.remaining', $remainsPixabay, ['remains' => $remainsPixabay, 'limit' => intval(Settings::get('pixabay_limit')) ?? 0]) ?></p>
             </div>
         </div>
     </div>

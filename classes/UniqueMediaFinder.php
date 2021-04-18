@@ -3,7 +3,6 @@ namespace SNiPI\UniqueMediaFinder\Classes;
 
 use Illuminate\Filesystem\Filesystem;
 use Storage;
-use Backend\Widgets\MediaManager;
 use Input;
 use Mail;
 use Lang;
@@ -28,8 +27,14 @@ class UniqueMediaFinder {
 	}
 
 	public function extendMediaManager() {
+
+		if (class_exists('System'))  {
+			$manager = \Media\Widgets\MediaManager::class;
+		} else {
+			$manager = \Backend\Widgets\MediaManager::class;
+		}
 		
-		MediaManager::extend(function($widget) {
+		$manager::extend(function($widget) {
 
 			$widget->addViewPath(plugins_path().'/snipi/uniquemediafinder/partials/editor/');
             $widget->addViewPath(plugins_path().'/snipi/uniquemediafinder/partials/');

@@ -9,7 +9,7 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 	</div>
 	<div class="col-md-6">
 		<?php
-		$remainsPexels = Settings::get('pexels_remain');
+		$remainsPexels = intval(Settings::get('pexels_remain')) ?? 0;
 		if($remainsPexels < 15) {
 			$class = 'warning';
 		} else if($remainsPexels < 10) {
@@ -31,7 +31,7 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 		    </div>
 		    <div class="content">
 		        <p><?= trans_choice('snipi.uniquemediafinder::lang.callouts.remaining', 
-		        	$remainsPexels, ['remains' => $remainsPexels,'limit' => Settings::get('pexels_limit')]) ?></p>
+		        	$remainsPexels, ['remains' => $remainsPexels,'limit' => intval(Settings::get('pexels_limit')) ?? 0]) ?></p>
 		    </div>
 		</div>
 	</div>

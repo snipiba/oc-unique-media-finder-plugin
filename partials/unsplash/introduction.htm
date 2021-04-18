@@ -9,8 +9,8 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
     </div>
     <div class="col-md-6">
         <?php
-        $remains = Settings::get('unsplash_remain');
-        $limit = Settings::get('unsplash_limit');
+        $remains = intval(Settings::get('unsplash_remain')) ?? 0;
+        $limit = intval(Settings::get('unsplash_limit')) ?? 0;
         if($remains < 25) {
         	$class = 'warning';
         } else if($remains < 10) {

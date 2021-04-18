@@ -36,8 +36,9 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 						data-request-data="{id: '<?= $photo['id'] ?>', provider: 'pixabay'}"
 						data-request-loading="#downloading"
 						data-load-indicator="Downloading"
-						data-request-success="photoDownloaded('<?= Settings::get('pixabay_upload_folder') ?>')"
-					><i class="icon-download"></i> Download</a>
+						data-request-success="photoDownloaded('<?= Settings::get('pixabay_upload_folder') ?>')">
+						<i class="icon-download"></i> Download
+					</a>
 					<div class="loading-indicator-container bg-none transparent" id="downloading">
 					    <div class="loading-indicator size-small" style="background:transparent;">
 					        <span></span>
