@@ -22,6 +22,9 @@ class Plugin extends PluginBase
     protected const PROVIDERS = ['unsplash', 'pexels', 'pixabay'];
     protected $providers;
 
+    public $require = ['RainLab.Translate'];
+
+
     public function pluginDetails()
     {
         return [
