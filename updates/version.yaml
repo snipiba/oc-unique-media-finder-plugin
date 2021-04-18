@@ -82,3 +82,4 @@
 2.1.0: !!! Check for existence OctoberCMS v2.0 (MediaLibrary is separated)
   - Update for handling media library for new "media" namespace classes
   - fix for "className" OctoberCMS flash message issues?
+2.1.1: Updated plugin name in composer.json

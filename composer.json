@@ -1,5 +1,5 @@
 {
-    "name": "snipi/oc-unique-media-finder-plugin",
+    "name": "snipi/uniquemediafinder-plugin",
     "type": "october-plugin",
     "description": "Media finder extension for searching images on Unsplash",
     "homepage": "https://www.snipi.sk",
