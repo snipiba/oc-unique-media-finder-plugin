@@ -171,19 +171,30 @@ function search(provider) {
 }
 
 function photoDownloaded(folder,filename) {
-	$.oc.flashMsg({
-        'text' : __lang_pic_downloaded + folder,
-        'class' : 'success',
-	});
-	setTimeout(function(){
-		if(confirm(__lang_open_download_folder)) {
+	try {
+		$.oc.flashMsg({
+	        'text' : __lang_pic_downloaded + folder,
+	        'class' : 'success',
+		});
+
+		setTimeout(function(){
+			if(confirm(__lang_open_download_folder)) {			
+				$('[data-type="current-folder"]').val(folder);
+				$('button[data-command="refresh"]').trigger('click');
+				$('#media-provider').hide();
+				$('#main-content').show();
+				$('.modal').trigger('close.oc.popup'); 
+			}
+		},1500);		
+	} catch(err) {
+		$.oc.confirm(__lang_pic_downloaded + folder, function(){
 			$('[data-type="current-folder"]').val(folder);
 			$('button[data-command="refresh"]').trigger('click');
 			$('#media-provider').hide();
 			$('#main-content').show();
 			$('.modal').trigger('close.oc.popup'); 
-		}
-	},1500);
+		},__lang_open_download_folder)
+	}
 }
 
 function initPagination() {

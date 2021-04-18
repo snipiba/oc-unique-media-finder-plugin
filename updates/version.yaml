@@ -84,3 +84,4 @@
   - fix for "className" OctoberCMS flash message issues?
 2.1.1: Updated plugin name in composer.json
 2.1.2: "fix for default language / plural form of text"
+2.1.3: fix for $.of.flashMsg -> $.oc.confirm ...
