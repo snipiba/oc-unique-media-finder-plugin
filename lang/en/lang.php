@@ -4,7 +4,6 @@
 		'plugin' => [
 			'plugin_name' => 'Unique media finder',
 			'plugin_description' => 'Media finder extension for searching images on most free to use stock galleries like Unsplash and Pexels.',
-			'plugin_desc' => 'Media finder extension for searching images on most free to use stock galleries like Unsplash and Pexels.',
 			'plugin_desc_settings' => 'Search stock galleries in ease.'
 		],
 		'component' => [
@@ -112,7 +111,7 @@
 		'callouts' => [
 			'remaining_traffic' => 'Information about traffic and limits',
 			'traffic_status' => 'Did u know, how many request you can make?',
-			'remaining' => '{0}No remaining traffic left for this provider (:remains/:limit):limit.|{1}Last remaining request for this provider (:remains/:limit)|{2,Inf}:remains remaining request from :limit for this provider.'
+			'remaining' => 'No remaining traffic left for this provider (:remains/:limit):limit.|:remains remaining request from :limit for this provider.|:remains remaining request from :limit for this provider.'
 		],
 		'searching_for' => 'Searching for',
 		'processing' => [
