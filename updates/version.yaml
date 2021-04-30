@@ -86,3 +86,4 @@
 2.1.2: "fix for default language / plural form of text"
 2.1.3: fix for $.of.flashMsg -> $.oc.confirm ...
 2.1.4: Added requirement to RainLab.Translate to avoid error
+2.1.5: Modified Metadata for promoting new plugin / MEMetadata

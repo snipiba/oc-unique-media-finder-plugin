@@ -71,39 +71,13 @@ if(!empty($metadata)):
 	</tbody>
 </table>
 <?php
-if(array_key_exists('exif', $metadata['raw_data'])):
-?>
-<label><?= trans('snipi.uniquemediafinder::lang.exif_informations') ?></label>
-<table class="name-value-list">
-    <tbody>
-		<?php
-		foreach($metadata['raw_data']['exif'] as $key => $val):
-		if(!empty($val)):
-	    ?>
-	    <tr>
-	        <th><?= trans('snipi.uniquemediafinder::lang.exif.' . $key) ?></th>
-	        <td class="text-right"><?= $val ?></td>
-	    </tr>
-	    <?php
-	    endif;
-	    endforeach;
-		?>
-    </tbody>
-</table>
-<?php
-endif;
-endif;
-if(!class_exists('\SNiPI\MEMetadata\Classes\MEMetadata')):
 ?>
 <label>Custom metadata?</label>
 <p>If you wish to use custom metadata for media finder or media library, see my other plugins for extending media manager, like <strong><a href="https://octobercms.com/plugin/snipi-memetadata" target="_blank">Media Editor Metadata</a></strong>.</p>
 <?php
 else:
 ?>
-<label>Media Editor Metadata</label>
-<p><small>Metadata stored via Media Editor Metadata.</small></p>
 <?php
-$this->makePartial('$/snipi/memetadata/partials/_metadata.htm');
 endif;
 
 ?>
