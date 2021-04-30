@@ -92,14 +92,18 @@ if(array_key_exists('exif', $metadata['raw_data'])):
 </table>
 <?php
 endif;
+endif;
+if(!class_exists('\SNiPI\MEMetadata\Classes\MEMetadata')):
+?>
+<label>Custom metadata?</label>
+<p>If you wish to use custom metadata for media finder or media library, see my other plugins for extending media manager, like <strong><a href="https://octobercms.com/plugin/snipi-memetadata" target="_blank">Media Editor Metadata</a></strong>.</p>
+<?php
 else:
 ?>
-<p><?= trans('snipi.uniquemediafinder::lang.no_metadata_stored_for_file') ?></p>
-<p><?= trans('snipi.uniquemediafinder::lang.will_add_some_metadata') ?></p>
-<p><a href="https://www.buymeacoffee.com/snipiba" target="_blank"><img width="160" src="https://www.snipi.sk/storage/app/media/bmc-full-logo-no-background.png" alt="Buymeacoffee.com"></a></p>
+<label>Media Editor Metadata</label>
+<p><small>Metadata stored via Media Editor Metadata.</small></p>
 <?php
+$this->makePartial('$/snipi/memetadata/partials/_metadata.htm');
 endif;
-
-
 
 ?>
