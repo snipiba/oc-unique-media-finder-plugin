@@ -176,7 +176,7 @@ function photoDownloaded(folder,filename) {
 	        'text' : __lang_pic_downloaded + folder,
 	        'class' : 'success',
 		});
-
+		/*
 		setTimeout(function(){
 			if(confirm(__lang_open_download_folder)) {			
 				$('[data-type="current-folder"]').val(folder);
@@ -186,6 +186,7 @@ function photoDownloaded(folder,filename) {
 				$('.modal').trigger('close.oc.popup'); 
 			}
 		},1500);		
+		*/
 	} catch(err) {
 		$.oc.confirm(__lang_pic_downloaded + folder, function(){
 			$('[data-type="current-folder"]').val(folder);
