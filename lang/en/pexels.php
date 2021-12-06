@@ -22,8 +22,16 @@ return [
 		'pexels_limit' => 'Pexels LIMIT rate',
 		'pexels_remain' => 'Pexels remainig',
 		'enable_pexels' => 'Enable this provider',
-		'enable_pexels_comment' => 'Enable if you wish search with this provider.'
-
+		'enable_pexels_comment' => 'Enable if you wish search with this provider.',
+		'pexels_default_download_quality' => 'Default image quality for download',
+		'original' => 'Original',
+		'large2x' => 'Large 2x',
+		'large' => 'Large',
+		'medium' => 'Medium',
+		'small' => 'Small',
+		'portrait' => 'Portrait',
+		'landscape' => 'Landscape',
+		'tiny' => 'Tiny',
 	],
 	'forms' => [
 

@@ -60,7 +60,18 @@ tabs:
       label: snipi.uniquemediafinder::unsplash.settings.unsplash_remain
       tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
 
-
+    unsplash_default_download_quality:
+      type: dropdown
+      span: left
+      label: snipi.uniquemediafinder::unsplash.settings.unsplash_default_download_quality
+      tab: snipi.uniquemediafinder::lang.settings.tab_unsplash
+      options:
+        raw: snipi.uniquemediafinder::unsplash.settings.raw
+        full: snipi.uniquemediafinder::unsplash.settings.full
+        regular: snipi.uniquemediafinder::unsplash.settings.regular
+        medium: snipi.uniquemediafinder::unsplash.settings.medium
+        small: snipi.uniquemediafinder::unsplash.settings.small
+        thumb: snipi.uniquemediafinder::unsplash.settings.thumb
 
     pexels_introduction:
         type: partial
@@ -108,6 +119,21 @@ tabs:
       cssClass: hidden
       label: snipi.uniquemediafinder::pexels.settings.pexels_remain  
       tab: snipi.uniquemediafinder::lang.settings.tab_pexels    
+
+    pexels_default_download_quality:
+      type: dropdown
+      span: auto
+      label: snipi.uniquemediafinder::pexels.settings.pexels_default_download_quality
+      tab: snipi.uniquemediafinder::lang.settings.tab_pexels
+      options:
+        original: snipi.uniquemediafinder::pexels.settings.original
+        large2x: snipi.uniquemediafinder::pexels.settings.large2x
+        large: snipi.uniquemediafinder::pexels.settings.large
+        medium: snipi.uniquemediafinder::pexels.settings.medium
+        small: snipi.uniquemediafinder::pexels.settings.small
+        portrait: snipi.uniquemediafinder::pexels.settings.portrait
+        landscape: snipi.uniquemediafinder::pexels.settings.landscape
+        tiny: snipi.uniquemediafinder::pexels.settings.tiny
 
     pixabay_introduction:
         type: partial

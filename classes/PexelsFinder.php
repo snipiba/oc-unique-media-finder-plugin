@@ -89,20 +89,23 @@ class PexelsFinder implements FinderInterface {
 		$photo = json_decode($data->body, true);
 		if($photo) {
 
-			$pathToDownload = $photo['src']['original'];
+			$size = Settings::get('pexels_default_download_quality', 'original');
+			$pathToDownload = $photo['src'][$size];
 			$pi = pathinfo($pathToDownload);			
-			$rawData = Http::get($pathToDownload);			
+			$rawData = Http::get($pathToDownload);	
 			if(!Storage::exists('media/' . Settings::get('pexels_upload_folder'))) {
 				Storage::makeDirectory('media/' . Settings::get('pexels_upload_folder'));
 			}
-			$file =Storage::put('media/' . Settings::get('pexels_upload_folder') .'/pexels_' . $photoIdentifier.'.' . $pi['extension'],
+			$ext = explode('?', $pi['extension'])[0];
+			$filename = $size .'_'.$pi['filename'].'.'.$ext;
+			$file =Storage::put('media/' . Settings::get('pexels_upload_folder') .'/' . $filename,
 				$rawData->body
 			);
 			if($file) {
 				if(Settings::get('store_metadata')) {
 					$photo['user'] = $photo['photographer'];
 					$meta = new MetadataInformations;
-					$meta->filename = 'pexels_' . $photoIdentifier . '.' . $pi['extension'];
+					$meta->filename = $filename;
 					$meta->full_path = '/' . Settings::get('pexels_upload_folder') .'/' .$meta->filename;
 					$meta->raw_data = $photo;
 					$meta->author = $photo['photographer'];

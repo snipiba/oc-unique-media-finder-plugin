@@ -24,7 +24,14 @@ return [
 		'unsplash_limit' => 'Unsplash LIMIT rate',
 		'unsplash_remain' => 'Unsplash remaining',
 		'enable_unsplash' => 'Enable this provider',
-		'enable_unsplash_comment' => 'Enable if you wish search with this provider.'
+		'enable_unsplash_comment' => 'Enable if you wish search with this provider.',
+		'unsplash_default_download_quality' => 'Default download quality',
+        'raw' => 'Raw',
+        'full' => 'Full',
+        'regular' => 'Regular',
+        'medium' => 'Medium',
+        'small' => 'Small',
+        'thumb' => 'Thumb',
 	],
 	'forms' => [
 

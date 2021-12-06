@@ -88,6 +88,9 @@ class UnsplashFinder implements FinderInterface {
 		}
 		return $photoData;
 	}
+
+
+
 	public function downloadPhoto(string $photoIdentifier): bool
 	{
 		$data = Http::get(self::UNSPLASH_API_ENDPOINT . '/photos/' . $photoIdentifier .'/download', function($http){
@@ -99,18 +102,27 @@ class UnsplashFinder implements FinderInterface {
 			$http->header('Authorization', 'Client-ID '.Settings::get('unsplash_api_key'));
 			$http->header('Accept-Version','v1');    
 		});
+
 		$rawPhotoData = json_decode($photoData->body);
 		$this->updateLimits($data->headers);
+
 		$raw = json_decode($data->body);
 
-		if(!empty($raw->url)) {
+
+		$size = Settings::get('unsplash_default_download_quality','thumb');
+
+		if(!empty($rawPhotoData->urls)) {
 			
-			$rawData = Http::get($raw->url);
-			$pi = pathinfo($raw->url);
+			$rawData = Http::get($rawPhotoData->urls->$size);
+			$pi = pathinfo($rawPhotoData->urls->$size);
+
 			if(!Storage::exists('media/' . Settings::get('unsplash_upload_folder'))) {
 				Storage::makeDirectory('media/' . Settings::get('unsplash_upload_folder'));
 			}
-			$filename = 'unsplash_' . $photoIdentifier.'.jpg';
+			parse_str($pi['basename'], $parsed);
+			
+			$ext = $parsed['fm'] ?? 'jpeg';
+			$filename =  $size .'_' . 'unsplash_' . $photoIdentifier.'.' . $ext;
 			$file =Storage::put('media/' . Settings::get('unsplash_upload_folder') .'/'.$filename,
 				$rawData->body
 			);
