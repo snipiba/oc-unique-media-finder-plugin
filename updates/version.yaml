@@ -91,3 +91,4 @@
   - added dropdown to select download quality for Pexels image
   - added dropdown to select download quality for Unsplash image
   - prefixed sizes by download quality
+2.1.7: Removed annoying confirmation for reload downloaded picture
