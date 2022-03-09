@@ -1,27 +1,25 @@
 <div class="layout-row">
-	<div class="layout">
-		<div class="layout-cell p-l-md min-size">
-			<div data-control="balloon-selector" class="control-balloon-selector">
-				<label class="control-label"><?= trans('snipi.uniquemediafinder::finder.filters.orientation_filter') ?></label>
-			    <ul>
-			        <li data-value="all" class="active"><?= trans('snipi.uniquemediafinder::finder.filters.orientation.all') ?></li>
-			        <li data-value="portrait"><?= trans('snipi.uniquemediafinder::finder.filters.orientation.vertical') ?></li>
-			        <li data-value="landscape"><?= trans('snipi.uniquemediafinder::finder.filters.orientation.horizontal') ?></li>
-			    </ul>
-			    <input type="hidden" name="orientation" value="all" />
-			</div>
+	<div class="layout-cell p-l-md min-size">
+		<div data-control="balloon-selector" class="control-balloon-selector">
+			<label class="control-label"><?= trans('snipi.uniquemediafinder::finder.filters.orientation_filter') ?></label>
+		    <ul>
+		        <li data-value="all" class="active"><?= trans('snipi.uniquemediafinder::finder.filters.orientation.all') ?></li>
+		        <li data-value="portrait"><?= trans('snipi.uniquemediafinder::finder.filters.orientation.vertical') ?></li>
+		        <li data-value="landscape"><?= trans('snipi.uniquemediafinder::finder.filters.orientation.horizontal') ?></li>
+		    </ul>
+		    <input type="hidden" name="orientation" value="all" />
 		</div>
-		<div class="layout-cell min-size">
-			<div data-control="balloon-selector" class="control-balloon-selector">
-				<label class="control-label"><?= trans('snipi.uniquemediafinder::finder.filters.image_type') ?></label>
-			    <ul>
-			        <li data-value="all" class="active"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.all') ?></li>
-			        <li data-value="photo"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.photo') ?></li>
-			        <li data-value="vector"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.vector') ?></li>
-			        <li data-value="illustration"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.illustration') ?></li>
-			    </ul>
-			    <input type="hidden" name="image_type" value="all" />
-			</div>
+	</div>
+	<div class="layout-cell min-size">
+		<div data-control="balloon-selector" class="control-balloon-selector">
+			<label class="control-label"><?= trans('snipi.uniquemediafinder::finder.filters.image_type') ?></label>
+		    <ul>
+		        <li data-value="all" class="active"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.all') ?></li>
+		        <li data-value="photo"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.photo') ?></li>
+		        <li data-value="vector"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.vector') ?></li>
+		        <li data-value="illustration"><?= trans('snipi.uniquemediafinder::finder.filters.image_types.illustration') ?></li>
+		    </ul>
+		    <input type="hidden" name="image_type" value="all" />
 		</div>
 	</div>
 </div>
