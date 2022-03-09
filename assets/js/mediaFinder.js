@@ -7,6 +7,7 @@
  var mediafinderEnabled = false;
  var currentProvider = 'unsplash';
 jQuery(document).ready(function() {
+	
 	if($('div[data-control="media-manager"]').length>0) {
 		initMediaFinder();
 	}
@@ -14,8 +15,22 @@ jQuery(document).ready(function() {
 		if(!mediafinderEnabled) {
 			initMediaFinder();
 		}
+		
+		if($('div.control-popup').length >0 ){
+			$('div.control-popup').detach(function(){
+				alert('fuck me');
+			});
+		}
+	});
+	var x = new MutationObserver(function (e) {
+	  if (e[0].removedNodes.length>0) {
+	  	if(e[0].removedNodes[0].classList.contains('control-popup')) {
+		  	mediafinderEnabled = false;
+		  }
+	  }
 	});
 
+	x.observe(document.querySelector('body'), { childList: true });
 });
 
 function initMediaFinder() {
