@@ -14,11 +14,21 @@ use SNiPI\UniqueMediaFinder\Models\Settings;
 class UniqueMediaFinder {
 
 	protected $providers;
+	
+	protected $isEnabled = false;
 
 	public function __construct($providers) {
 		$this->providers = $providers;
+		$this->checkConfig();
 	}
 
+	public function checkConfig() {
+		$this->isEnabled = (
+			$this->providers['unsplash']->configured() || 
+			$this->providers['pexels']->configured() || 
+			$this->providers['pixabay']->configured()
+		) ? true : false;
+	}
 	public static function getProviders() {
         $providers['unsplash'] = new UnsplashFinder;
         $providers['pexels'] = new PexelsFinder;
@@ -41,13 +51,13 @@ class UniqueMediaFinder {
             $widget->addJs('/plugins/snipi/uniquemediafinder/assets/js/mediaFinder.js');
             $widget->addCss('/plugins/snipi/uniquemediafinder/assets/css/mediaFinder.css');
 
-			$widget->addDynamicMethod('isConfigured', function(){
-				if($this->providers['unsplash']->configured() || $this->providers['pexels']->configured() || $this->providers['pixabay']->configured()) {
-					return true;
-				}
-				return false;
-			});
-
+		$widget->addDynamicMethod('isConfigured', function(){
+			if($this->providers['unsplash']->configured() || $this->providers['pexels']->configured() || $this->providers['pixabay']->configured()) {
+				return true;
+			}
+			return false;
+		});
+		if($this->isEnabled) {
 			$widget->addDynamicMethod('getProviders', function() use ($widget) {
 				return $this->providers;
 			});
@@ -198,6 +208,7 @@ class UniqueMediaFinder {
 
 			}
 		});
+		}
 	}
 
 }
