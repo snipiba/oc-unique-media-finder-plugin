@@ -38,10 +38,11 @@ function initMediaFinder() {
 	mediafinderEnabled = true;
 	$('#media-provider,#provider-details,#loader').hide();
 	$('a[data-command]').click(function(e){
-		e.stopPropagation();
+		//e.stopPropagation();
 		if($(this).data('command') != 'open-provider') {
 			$('#media-provider').hide();
 			$('#main-content').show();
+			$('li.active').removeClass('active');
 		}
 	});
 

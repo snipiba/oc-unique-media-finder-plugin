@@ -12,7 +12,7 @@ foreach($this->getProviders() as $key => $provider) {
 
 		</li>';
 	} else {
-		echo '<li><a href="'. Backend::url('system/settings/update/snipi/uniquemediafinder/config') .'#primarytab-snipiuniquemediafinderlangsettingstab-'.$key.'"><i class="icon-cog"></i> Configure '.ucfirst($key).'</a></li>';
+		echo '<li><a href="'. Backend::url('system/settings/update/snipi/uniquemediafinder/config') .'#primarytab-'.$key.'-api"><i class="icon-cog"></i> Configure '.ucfirst($key).'</a></li>';
 	}
 }
 if($enabledProviders == 0) {
