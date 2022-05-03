@@ -96,3 +96,4 @@
   - https://octobercms.com/plugin/support/snipi-uniquemediafinder/weird-display-when-you-open-media-finder-several-times
 2.2.0: Fix for upload images when plugin was not properly configured
 2.2.1: Updated fix, changes in _body partial in core editor (removed upload-handler and created some unique id)
+2.2.2: Fix for "set filter" method from left sidebar
