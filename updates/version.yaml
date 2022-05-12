@@ -29,14 +29,6 @@
   - extended pixbay to option allow full HD download
 
 2.0.0: !!! Refactoring whole plugin - complete refactoring
-  - removed search button
-  - created search providers in left sidebar in media library
-  - fixed initialization when media library is called from RainLab.Pages or Blog in Popup
-  - updated folder structure for better handling providers
-  - created new features for searching with filters
-  - updated detail informations popup
-  - updated pagination
-  - updated first loading for latest / random pictures from providers (for inspiration)
 2.0.1:
   - create_table_for_database_storage.php
 2.0.2: Created new features and widgets
@@ -97,3 +89,4 @@
 2.2.0: Fix for upload images when plugin was not properly configured
 2.2.1: Updated fix, changes in _body partial in core editor (removed upload-handler and created some unique id)
 2.2.2: Fix for "set filter" method from left sidebar
+2.2.3: Fixed yaml file because of  A syntax error was detected in version.yaml
