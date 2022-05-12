@@ -28,7 +28,15 @@
   - added notation to list of pixbay photos (requested for accept api full access)
   - extended pixbay to option allow full HD download
 
-2.0.0: !!! Refactoring whole plugin - complete refactoring
+2.0.0: Refactoring whole plugin - complete refactoring
+  - removed search button
+  - created search providers in left sidebar in media library
+  - fixed initialization when media library is called from RainLab.Pages or Blog in Popup
+  - updated folder structure for better handling providers
+  - created new features for searching with filters
+  - updated detail informations popup
+  - updated pagination
+  - updated first loading for latest / random pictures from providers (for inspiration)
 2.0.1:
   - create_table_for_database_storage.php
 2.0.2: Created new features and widgets
@@ -71,7 +79,7 @@
   - fixed X-Ratelimit-Limit headers
 2.0.15:
   - pixabay X-RateLimit-Limit headers fix (strange when pexels and unsplash has Ratelimit and Pixabay RateLimit)
-2.1.0: !!! Check for existence OctoberCMS v2.0 (MediaLibrary is separated)
+2.1.0: Check for existence OctoberCMS v2.0 (MediaLibrary is separated)
   - Update for handling media library for new "media" namespace classes
   - fix for "className" OctoberCMS flash message issues?
 2.1.1: Updated plugin name in composer.json
@@ -89,4 +97,5 @@
 2.2.0: Fix for upload images when plugin was not properly configured
 2.2.1: Updated fix, changes in _body partial in core editor (removed upload-handler and created some unique id)
 2.2.2: Fix for "set filter" method from left sidebar
-2.2.3: Fixed yaml file because of  A syntax error was detected in version.yaml
+2.2.3: Fix yaml
+2.2.4: Removed exclamation marks from comments, because failed parsing in yaml.php
